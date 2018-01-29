@@ -22,6 +22,12 @@ class Login: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.auth = Auth.auth()
         
+//        do {
+//            try self.auth.signOut()
+//        } catch  {
+//            
+//        }
+        
         self.auth.addStateDidChangeListener { (auth, user) in
             
             if user != nil {

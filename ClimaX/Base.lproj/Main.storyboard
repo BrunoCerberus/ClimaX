@@ -138,31 +138,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="S6c-ST-Qxi">
-                                <rect key="frame" x="83" y="44" width="208" height="190"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="190" id="OmQ-LK-OPZ"/>
-                                    <constraint firstAttribute="width" constant="208" id="UtA-KY-Lve"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8X-4p-iDr">
-                                <rect key="frame" x="16" y="284" width="343" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="9Mo-TY-xEV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ic1-eM-TaO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseCell" id="cya-hJ-aKM">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cya-hJ-aKM" id="Y6T-AW-zjr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Sf0-o3-yn6" id="bZY-ug-HUT"/>
+                                    <outlet property="delegate" destination="Sf0-o3-yn6" id="rPe-9V-RJ7"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.094952858984470367" green="0.48843675851821899" blue="0.72478324174880981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="S6c-ST-Qxi" firstAttribute="centerX" secondItem="QqL-22-q9c" secondAttribute="centerX" id="58S-mO-QyW"/>
-                            <constraint firstItem="S6c-ST-Qxi" firstAttribute="top" secondItem="RS7-R9-Tyv" secondAttribute="top" constant="44" id="I8q-PH-Vai"/>
-                            <constraint firstItem="W8X-4p-iDr" firstAttribute="leading" secondItem="RS7-R9-Tyv" secondAttribute="leading" constant="16" id="Ud7-fR-h9G"/>
-                            <constraint firstItem="W8X-4p-iDr" firstAttribute="centerY" secondItem="QqL-22-q9c" secondAttribute="centerY" id="c6y-8B-Mue"/>
-                            <constraint firstItem="RS7-R9-Tyv" firstAttribute="trailing" secondItem="W8X-4p-iDr" secondAttribute="trailing" constant="16" id="tdh-eL-Hgt"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RS7-R9-Tyv"/>
                     </view>
                     <navigationItem key="navigationItem" title="Clima" id="jhQ-TW-G8c">
@@ -174,6 +170,9 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="UBj-5V-qS7"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="ic1-eM-TaO" id="p8f-Xj-DUX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtW-U1-uo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,11 +354,11 @@
             </objects>
             <point key="canvasLocation" x="-602" y="34"/>
         </scene>
-        <!--Clima-->
+        <!--Clíma-->
         <scene sceneID="UEk-gA-P3H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dsd-7o-Bst" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Clima" id="YEM-54-hNw"/>
+                    <tabBarItem key="tabBarItem" title="Clíma" image="sun-2" id="YEM-54-hNw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VbC-7a-N6r">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -383,7 +382,7 @@
         <scene sceneID="fw7-bM-h93">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VWM-LP-4ln" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mapa" id="pcf-g8-ZFV"/>
+                    <tabBarItem key="tabBarItem" title="Mapa" image="placeholder" id="pcf-g8-ZFV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Oco-rC-3QO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -407,7 +406,7 @@
         <scene sceneID="cNL-tv-kI0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yLA-Ae-MTT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Gráfico" id="J68-sw-2o4"/>
+                    <tabBarItem key="tabBarItem" title="Gráfico" image="pie-chart" id="J68-sw-2o4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NJc-qm-zR7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -477,8 +476,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pie-chart" width="24" height="24"/>
+        <image name="placeholder" width="24" height="24"/>
         <image name="sad-cloud-filled" width="1600" height="1600"/>
-        <image name="sun" width="1020" height="1024"/>
+        <image name="sun-2" width="24" height="24"/>
         <image name="weather_icon" width="512" height="512"/>
     </resources>
 </document>
