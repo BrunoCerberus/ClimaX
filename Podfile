@@ -15,6 +15,6 @@ target 'ClimaX' do
   pod 'SwiftyJSON'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-
+  pod 'SVProgressHUD', :inhibit_warnings => true
 
 end

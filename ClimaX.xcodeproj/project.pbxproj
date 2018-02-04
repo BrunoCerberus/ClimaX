@@ -21,6 +21,10 @@
 		ECAEAD08201E4A0A0031F4D4 /* Clima.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEAD07201E4A0A0031F4D4 /* Clima.swift */; };
 		ECAEAD0A201E4A160031F4D4 /* Mapa.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEAD09201E4A160031F4D4 /* Mapa.swift */; };
 		ECAEAD0C201E4A2A0031F4D4 /* Grafico.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEAD0B201E4A2A0031F4D4 /* Grafico.swift */; };
+		ECCA34512024E2ED00070347 /* Previsao.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA344F2024E2ED00070347 /* Previsao.swift */; };
+		ECCA34522024E2ED00070347 /* Previsao.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCA34502024E2ED00070347 /* Previsao.xib */; };
+		ECCA34542024E68D00070347 /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA34532024E68D00070347 /* Tempo.swift */; };
+		ECCA34562024EACE00070347 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA34552024EACE00070347 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		ECAEAD07201E4A0A0031F4D4 /* Clima.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clima.swift; sourceTree = "<group>"; };
 		ECAEAD09201E4A160031F4D4 /* Mapa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapa.swift; sourceTree = "<group>"; };
 		ECAEAD0B201E4A2A0031F4D4 /* Grafico.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grafico.swift; sourceTree = "<group>"; };
+		ECCA344F2024E2ED00070347 /* Previsao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Previsao.swift; sourceTree = "<group>"; };
+		ECCA34502024E2ED00070347 /* Previsao.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Previsao.xib; sourceTree = "<group>"; };
+		ECCA34532024E68D00070347 /* Tempo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tempo.swift; sourceTree = "<group>"; };
+		ECCA34552024EACE00070347 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,7 @@
 		EC1B4E87201E1C3A0003C410 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ECCA34532024E68D00070347 /* Tempo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -88,6 +97,7 @@
 				ECAEAD07201E4A0A0031F4D4 /* Clima.swift */,
 				ECAEAD09201E4A160031F4D4 /* Mapa.swift */,
 				ECAEAD0B201E4A2A0031F4D4 /* Grafico.swift */,
+				ECCA344F2024E2ED00070347 /* Previsao.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -97,6 +107,7 @@
 			children = (
 				ECAEAD03201E42700031F4D4 /* Base64.swift */,
 				ECAEAD04201E42700031F4D4 /* FirebaseUtil.swift */,
+				ECCA34552024EACE00070347 /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -128,12 +139,21 @@
 				EC1B4E89201E1C840003C410 /* Utils */,
 				EC1B4E88201E1C450003C410 /* Controllers */,
 				EC1B4E87201E1C3A0003C410 /* Models */,
-				EC75A9BA201DF84100F26204 /* Main.storyboard */,
+				ECCA344E2024E2AC00070347 /* Storyboards */,
 				EC75A9C0201DF84100F26204 /* Assets.xcassets */,
-				EC75A9C2201DF84100F26204 /* LaunchScreen.storyboard */,
 				EC75A9BD201DF84100F26204 /* ClimaX.xcdatamodeld */,
 			);
 			path = ClimaX;
+			sourceTree = "<group>";
+		};
+		ECCA344E2024E2AC00070347 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA34502024E2ED00070347 /* Previsao.xib */,
+				EC75A9C2201DF84100F26204 /* LaunchScreen.storyboard */,
+				EC75A9BA201DF84100F26204 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC75A9C4201DF84100F26204 /* LaunchScreen.storyboard in Resources */,
+				ECCA34522024E2ED00070347 /* Previsao.xib in Resources */,
 				EC1B4E86201E1A810003C410 /* GoogleService-Info.plist in Resources */,
 				EC75A9C1201DF84100F26204 /* Assets.xcassets in Resources */,
 				EC75A9BC201DF84100F26204 /* Main.storyboard in Resources */,
@@ -237,6 +258,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -246,6 +268,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -285,9 +308,12 @@
 				EC75A9BF201DF84100F26204 /* ClimaX.xcdatamodeld in Sources */,
 				ECAEAD05201E42700031F4D4 /* Base64.swift in Sources */,
 				ECAEAD0C201E4A2A0031F4D4 /* Grafico.swift in Sources */,
+				ECCA34542024E68D00070347 /* Tempo.swift in Sources */,
 				ECAEAD0A201E4A160031F4D4 /* Mapa.swift in Sources */,
 				ECAEAD06201E42700031F4D4 /* FirebaseUtil.swift in Sources */,
 				ECAEAD08201E4A0A0031F4D4 /* Clima.swift in Sources */,
+				ECCA34512024E2ED00070347 /* Previsao.swift in Sources */,
+				ECCA34562024EACE00070347 /* Enums.swift in Sources */,
 				EC75A9B7201DF84100F26204 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

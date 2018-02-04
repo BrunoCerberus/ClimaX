@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import MapKit
 import SwiftyJSON
+import GoogleMaps
+import GooglePlaces
 
 class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -27,6 +29,12 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         self.gerenciadorDeLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         self.gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
         self.gerenciadorDeLocalizacao.startUpdatingLocation()
+        configCell()
+    }
+    
+    func configCell() {
+        let nibName = UINib(nibName: "Previsao", bundle: nil)
+        self.tableView.register(nibName, forCellReuseIdentifier: "reuseCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,14 +87,19 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell")
-        cell?.textLabel?.text = "teste"
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
+        let tempo = Tempo(temp: 28.5, sensTermica: 30.0, umidade: 14.1, velocVento: 28.9, tempoLocal: .ensolarado)
+        cell.commonInit(tempo: tempo)
+        return cell
     }
     
 }
