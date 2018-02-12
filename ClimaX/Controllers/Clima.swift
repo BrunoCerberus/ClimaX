@@ -11,6 +11,7 @@ import FirebaseAuth
 import MapKit
 import SwiftyJSON
 import SVProgressHUD
+import Alamofire
 
 class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -18,17 +19,21 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     var auth:Auth!
     var gerenciadorDeLocalizacao = CLLocationManager()
+    var firstUpdate: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.auth = Auth.auth()
-        
+        configLocationManager()
+        configCell()
+    }
+    
+    func configLocationManager() {
         self.gerenciadorDeLocalizacao.delegate = self
         self.gerenciadorDeLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         self.gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
         self.gerenciadorDeLocalizacao.startUpdatingLocation()
-        configCell()
     }
     
     //Register the Xib Cell
@@ -44,10 +49,13 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let _latitude = manager.location?.coordinate.latitude {
-            if let _longitude = manager.location?.coordinate.longitude {
-                self.gerenciadorDeLocalizacao.stopUpdatingLocation()
-                self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
+        if firstUpdate {
+            if let _latitude = locations.first?.coordinate.latitude {
+                if let _longitude = locations.first?.coordinate.longitude {
+                    firstUpdate = false
+                    self.gerenciadorDeLocalizacao.stopUpdatingLocation()
+                    self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
+                }
             }
         }
     }
@@ -66,7 +74,9 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
                     
                     //loads the city name
                     if let city = dadosLocal.locality {
-                        self.pesquisaIDCidade(city)
+                        if let state = dadosLocal.administrativeArea {
+                            self.pesquisaIDCidade(city, state)
+                        }
                     }
                     
                 }
@@ -91,9 +101,20 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         }
     }
     
-    func pesquisaIDCidade(_ cidade: String) {
+    func pesquisaIDCidade(_ cidade: String, _ estado: String) {
         
-        let url = "http://apiadvisor.climatempo.com.br/api/v1/locale/city?name=\(cidade)&state=ES&token=0925e8c6873f32e349f881fa1da4564e"
+        let myToken = "0925e8c6873f32e349f881fa1da4564e"
+        //Request with response handling
+        request("http://apiadvisor.climatempo.com.br/api/v1/locale/city", method: .get, parameters: ["name":cidade, "state":estado, "token":myToken]).responseJSON { (response) in
+            
+            let json = JSON(response.result.value!)
+            for object in json.arrayValue {
+                let cityID = object["id"].intValue
+                print(cityID)
+            }
+            
+        }
+        
     }
     
     func pesquisaClimaJSON() {
@@ -110,7 +131,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let tempo = Tempo(temp: 28.5, sensTermica: 30.0, umidade: 14.1, velocVento: 28.9, tempoLocal: .ensolarado)
+        let tempo = Tempo(temp: 28.5, sensTermica: 30.0, umidade: 14.1, velocVento: 28.9, tempoLocal: .chuvoso)
         cell.commonInit(tempo: tempo)
         return cell
     }
