@@ -10,8 +10,7 @@ import UIKit
 import FirebaseAuth
 import MapKit
 import SwiftyJSON
-import GoogleMaps
-import GooglePlaces
+import SVProgressHUD
 
 class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -65,12 +64,10 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
                 
                 if let dadosLocal = local?.first {
                     
-                    var cidade = ""
-                    if dadosLocal.locality != nil {
-                        cidade = dadosLocal.locality!
+                    //loads the city name
+                    if let city = dadosLocal.locality {
+                        self.pesquisaIDCidade(city)
                     }
-                    
-                    print("CIDADE ATUAL: " + cidade)
                     
                 }
                 
@@ -94,8 +91,9 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         }
     }
     
-    func pesquisaIDCidade() {
+    func pesquisaIDCidade(_ cidade: String) {
         
+        let url = "http://apiadvisor.climatempo.com.br/api/v1/locale/city?name=\(cidade)&state=ES&token=0925e8c6873f32e349f881fa1da4564e"
     }
     
     func pesquisaClimaJSON() {

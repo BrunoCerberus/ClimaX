@@ -16,5 +16,6 @@ target 'ClimaX' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'SVProgressHUD', :inhibit_warnings => true
+  pod 'RxSwift'
 
 end
