@@ -32,6 +32,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         configCell()
     }
     
+    //Register the Xib Cell
     func configCell() {
         let nibName = UINib(nibName: "Previsao", bundle: nil)
         self.tableView.register(nibName, forCellReuseIdentifier: "reuseCell")
@@ -46,12 +47,13 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         
         if let _latitude = manager.location?.coordinate.latitude {
             if let _longitude = manager.location?.coordinate.longitude {
-                self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
                 self.gerenciadorDeLocalizacao.stopUpdatingLocation()
+                self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
             }
         }
     }
     
+    //Loads the data based on current latitude and longitude location
     func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         
         let localAtual = CLLocation(latitude: latitude, longitude: longitude)
@@ -61,10 +63,23 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             if erro == nil {
                 //Sucesso ao carregar as coordenadas do local
                 
+                if let dadosLocal = local?.first {
+                    
+                    var cidade = ""
+                    if dadosLocal.locality != nil {
+                        cidade = dadosLocal.locality!
+                    }
+                    
+                    print("CIDADE ATUAL: " + cidade)
+                    
+                }
+                
             }
         }
     }
     
+    //Loads the latitude and longitude based on the name of location
+    //this method uses the GooglePlaces API
     func carregaDadosLocal(PorNome local: String) {
         
     }
