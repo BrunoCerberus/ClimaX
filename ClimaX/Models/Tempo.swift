@@ -15,6 +15,7 @@ class Tempo {
     var umidade: Double!
     var velocVento: Double!
     var tempoLocal: TempoLocal!
+    var data: Date!
     
     init(temp: Double, sensTermica: Double, umidade: Double, velocVento: Double, tempoLocal: TempoLocal) {
         self.temperatura = temp

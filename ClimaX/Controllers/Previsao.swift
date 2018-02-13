@@ -15,6 +15,7 @@ class Previsao: UITableViewCell {
     @IBOutlet weak var umidade: UILabel!
     @IBOutlet weak var velocVento: UILabel!
     @IBOutlet weak var climaImage: UIImageView!
+    @IBOutlet weak var diaDaSemana: UILabel!
     
 
     override func awakeFromNib() {

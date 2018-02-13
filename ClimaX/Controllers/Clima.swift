@@ -20,6 +20,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     var auth:Auth!
     var gerenciadorDeLocalizacao = CLLocationManager()
     var firstUpdate: Bool = true
+    let myToken = "0925e8c6873f32e349f881fa1da4564e"
+    var previsaoTempo: [Tempo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,22 +105,33 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func pesquisaIDCidade(_ cidade: String, _ estado: String) {
         
-        let myToken = "0925e8c6873f32e349f881fa1da4564e"
         //Request with response handling
         request("http://apiadvisor.climatempo.com.br/api/v1/locale/city", method: .get, parameters: ["name":cidade, "state":estado, "token":myToken]).responseJSON { (response) in
             
             let json = JSON(response.result.value!)
             for object in json.arrayValue {
                 let cityID = object["id"].intValue
-                print(cityID)
+                print("City ID: \(cityID)")
+                DispatchQueue.main.async(execute: {
+                    self.pesquisaClimaJSON(cityID)
+                })
             }
             
         }
         
     }
     
-    func pesquisaClimaJSON() {
+    func pesquisaClimaJSON(_ cityID: Int) {
         
+        request("http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/\(cityID)/days/15", method: .get, parameters: ["token":myToken]).responseJSON { (response) in
+            
+            let json = JSON(response.result.value!)
+            let data = json["data"]
+            
+            for tempo in data.arrayValue {
+                print(tempo.first!)
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
