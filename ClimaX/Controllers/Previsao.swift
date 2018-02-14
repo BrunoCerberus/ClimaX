@@ -29,41 +29,29 @@ class Previsao: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(tempo: Tempo) {
+    func commonInit() {
         
-        if let _temp = tempo.temperatura {
-            if let _sensTermica = tempo.sensTermica {
-                if let _umidade = tempo.umidade {
-                    if let _velocVento = tempo.velocVento {
-                        self.temperatura.text = "Temperatura: \(_temp)"
-                        self.sensTermica.text = "Sensação: \(_sensTermica)"
-                        self.umidade.text = "Umidade: \(_umidade)"
-                        self.velocVento.text = "Velocidade do Vento: \(_velocVento)"
-                    }
-                }
-            }
-        }
         
-        switch tempo.tempoLocal.rawValue {
-            
-        case TempoLocal.ensolarado.rawValue:
-            self.climaImage.image = #imageLiteral(resourceName: "sunny")
-            break
-        case TempoLocal.chuvoso.rawValue:
-            self.climaImage.image = #imageLiteral(resourceName: "drop")
-            break
-        case TempoLocal.fechado.rawValue:
-            self.climaImage.image = #imageLiteral(resourceName: "cloud")
-            break
-        case TempoLocal.tepestade.rawValue:
-            self.climaImage.image = #imageLiteral(resourceName: "storm")
-            break
-        case TempoLocal.vendaval.rawValue:
-            self.climaImage.image = #imageLiteral(resourceName: "wind")
-            break
-        default: break
-            
-        }
+//        switch tempo.tempoLocal.rawValue {
+//
+//        case TempoLocal.ensolarado.rawValue:
+//            self.climaImage.image = #imageLiteral(resourceName: "sunny")
+//            break
+//        case TempoLocal.chuvoso.rawValue:
+//            self.climaImage.image = #imageLiteral(resourceName: "drop")
+//            break
+//        case TempoLocal.fechado.rawValue:
+//            self.climaImage.image = #imageLiteral(resourceName: "cloud")
+//            break
+//        case TempoLocal.tepestade.rawValue:
+//            self.climaImage.image = #imageLiteral(resourceName: "storm")
+//            break
+//        case TempoLocal.vendaval.rawValue:
+//            self.climaImage.image = #imageLiteral(resourceName: "wind")
+//            break
+//        default: break
+//
+//        }
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Tempo {
     
@@ -15,14 +16,13 @@ class Tempo {
     var umidade: Double!
     var velocVento: Double!
     var tempoLocal: TempoLocal!
-    var data: Date!
+    var data: String!
     
-    init(temp: Double, sensTermica: Double, umidade: Double, velocVento: Double, tempoLocal: TempoLocal) {
-        self.temperatura = temp
-        self.sensTermica = sensTermica
-        self.umidade = umidade
-        self.velocVento = velocVento
-        self.tempoLocal = tempoLocal
+    init(json: JSON) {
+        
+        let _temperatura = json["date_br"].stringValue
+        let _umidade = "\(json["humidity"]["min"].intValue) ~ \(json["humidity"]["max"].intValue)"
+        
     }
     
 }

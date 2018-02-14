@@ -128,8 +128,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             let json = JSON(response.result.value!)
             let data = json["data"]
             
-            for tempo in data.arrayValue {
-                print(tempo.first!)
+            for previsao in data.arrayValue {
+                
             }
         }
     }
@@ -144,8 +144,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let tempo = Tempo(temp: 28.5, sensTermica: 30.0, umidade: 14.1, velocVento: 28.9, tempoLocal: .chuvoso)
-        cell.commonInit(tempo: tempo)
+        let previsao = previsaoTempo[indexPath.row]
+        cell.commonInit()
         return cell
     }
     
