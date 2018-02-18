@@ -129,7 +129,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             let data = json["data"]
             
             for previsao in data.arrayValue {
-                
+                self.previsaoTempo.append(Tempo(json: previsao))
             }
         }
     }
@@ -139,7 +139,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return previsaoTempo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

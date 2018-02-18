@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-Ct-Zf4">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunny" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-Ct-Zf4">
                         <rect key="frame" x="215" y="11" width="89" height="78"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="78" id="7Ja-mX-ejt"/>
@@ -94,6 +94,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="sun" width="1020" height="1024"/>
+        <image name="sunny" width="128" height="128"/>
     </resources>
 </document>
