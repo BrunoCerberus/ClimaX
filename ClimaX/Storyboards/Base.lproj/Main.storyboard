@@ -133,16 +133,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ic1-eM-TaO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="180" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ic1-eM-TaO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.094952858984470367" green="0.48843675851821899" blue="0.72478324174880981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseCell" id="cya-hJ-aKM">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cya-hJ-aKM" id="Y6T-AW-zjr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -154,6 +153,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.094952858984470367" green="0.48843675851821899" blue="0.72478324174880981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ic1-eM-TaO" firstAttribute="leading" secondItem="RS7-R9-Tyv" secondAttribute="leading" id="Bnv-wm-r40"/>
+                            <constraint firstItem="ic1-eM-TaO" firstAttribute="trailing" secondItem="RS7-R9-Tyv" secondAttribute="trailing" id="XOU-zQ-TDN"/>
+                            <constraint firstItem="ic1-eM-TaO" firstAttribute="bottom" secondItem="RS7-R9-Tyv" secondAttribute="bottom" id="gAB-Sv-2C9"/>
+                            <constraint firstItem="ic1-eM-TaO" firstAttribute="top" secondItem="RS7-R9-Tyv" secondAttribute="top" id="yPP-1d-60U"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RS7-R9-Tyv"/>
                     </view>
                     <navigationItem key="navigationItem" title="Clima" id="jhQ-TW-G8c">

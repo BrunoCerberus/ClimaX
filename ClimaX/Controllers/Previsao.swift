@@ -31,10 +31,10 @@ class Previsao: UITableViewCell {
     
     func commonInit(temp: String, sensTermica: String, umidade: String, velocVento: Double, data: String, tempoLocal: TempoLocal) {
         
-        self.temperatura.text = temp
-        self.sensTermica.text = sensTermica
-        self.umidade.text = umidade
-        self.velocVento.text = "\(velocVento)"
+        self.temperatura.text = "Temperaturas: " + temp
+        self.sensTermica.text = "Sensação: " + sensTermica
+        self.umidade.text = "Umidade: " + umidade
+        self.velocVento.text = "Velocidade do vento: \(velocVento)KM/h"
         self.diaDaSemana.text = data
         
         switch tempoLocal {

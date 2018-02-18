@@ -21,10 +21,10 @@ class Tempo {
     init(json: JSON) {
         
         data = json["date_br"].stringValue
-        umidade = "\(json["humidity"]["min"].intValue) ~ \(json["humidity"]["max"].intValue)"
+        umidade = "\(json["humidity"]["min"].intValue)% ~ \(json["humidity"]["max"].intValue)%"
         velocVento = json["wind"]["velocity_avg"].doubleValue
-        temperatura = "\(json["temperature"]["min"].intValue) ~ \(json["temperature"]["max"])"
-        sensTermica = "\(json["thermal_sensation"]["min"].intValue) ~ \(json["thermal_sensation"]["max"].intValue)"
+        temperatura = "\(json["temperature"]["min"].intValue)C ~ \(json["temperature"]["max"])C"
+        sensTermica = "\(json["thermal_sensation"]["min"].intValue)C ~ \(json["thermal_sensation"]["max"].intValue)C"
         let _rainProb = json["rain"]["probability"].intValue
         if _rainProb >= 30 {
             tempoLocal = TempoLocal.chuvoso
