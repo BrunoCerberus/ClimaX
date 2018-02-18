@@ -11,17 +11,35 @@ import SwiftyJSON
 
 class Tempo {
     
-    var temperatura: Double!
+    var temperatura: String!
     var sensTermica: Double!
-    var umidade: Double!
+    var umidade: String!
     var velocVento: Double!
     var tempoLocal: TempoLocal!
     var data: String!
     
     init(json: JSON) {
         
-        let _temperatura = json["date_br"].stringValue
-        let _umidade = "\(json["humidity"]["min"].intValue) ~ \(json["humidity"]["max"].intValue)"
+        data = json["date_br"].stringValue
+        umidade = "\(json["humidity"]["min"].intValue) ~ \(json["humidity"]["max"].intValue)"
+        velocVento = json["wind"]["velocity_avg"].doubleValue
+        temperatura = "\(json["temperature"]["min"].intValue) ~ \(json["temperature"]["max"])"
+        let _rainProb = json["rain"]["probability"].intValue
+        if _rainProb >= 30 {
+            tempoLocal = TempoLocal.chuvoso
+        } else {
+            let _text = json["text_icon"]["text"]["pt"].stringValue
+            if (_text.range(of: "Sol") != nil) || (_text.range(of: "sol") != nil) {
+                //we have sun
+                tempoLocal = TempoLocal.ensolarado
+            } else if (_text.range(of: "Nublado") != nil) || (_text.range(of: "nublado") != nil) || (_text.range(of: "nuvens") != nil) || (_text.range(of: "Nuvens") != nil) {
+                //we have a cloudy weather
+                tempoLocal = TempoLocal.fechado
+            }
+            else {
+                tempoLocal = TempoLocal.vendaval
+            }
+        }
         
     }
     
