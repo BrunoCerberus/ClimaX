@@ -6,17 +6,20 @@ target 'ClimaX' do
   use_frameworks!
 
   # Pods for ClimaX
+  pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  
+  pod 'GTMSessionFetcher', :inhibit_warnings => true
 
-  pod 'SDWebImage'
+  pod 'SDWebImage', :inhibit_warnings => true
   pod 'SwiftyJSON'
-  pod 'GoogleMaps'
-  pod 'GooglePlaces'
+  pod 'GoogleMaps', :inhibit_warnings => true
+  pod 'GooglePlaces', :inhibit_warnings => true
   pod 'SVProgressHUD', :inhibit_warnings => true
-  pod 'RxSwift'
-  pod 'Alamofire'
+  pod 'RxSwift', :inhibit_warnings => true
+  pod 'Alamofire', :inhibit_warnings => true
 
 end
