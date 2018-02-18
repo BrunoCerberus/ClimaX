@@ -12,7 +12,7 @@ import SwiftyJSON
 class Tempo {
     
     var temperatura: String!
-    var sensTermica: Double!
+    var sensTermica: String!
     var umidade: String!
     var velocVento: Double!
     var tempoLocal: TempoLocal!
@@ -24,6 +24,7 @@ class Tempo {
         umidade = "\(json["humidity"]["min"].intValue) ~ \(json["humidity"]["max"].intValue)"
         velocVento = json["wind"]["velocity_avg"].doubleValue
         temperatura = "\(json["temperature"]["min"].intValue) ~ \(json["temperature"]["max"])"
+        sensTermica = "\(json["thermal_sensation"]["min"].intValue) ~ \(json["thermal_sensation"]["max"].intValue)"
         let _rainProb = json["rain"]["probability"].intValue
         if _rainProb >= 30 {
             tempoLocal = TempoLocal.chuvoso

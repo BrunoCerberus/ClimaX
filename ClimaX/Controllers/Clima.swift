@@ -131,6 +131,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             for previsao in data.arrayValue {
                 self.previsaoTempo.append(Tempo(json: previsao))
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -145,7 +146,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
         let previsao = previsaoTempo[indexPath.row]
-        cell.commonInit()
+        cell.commonInit(temp: previsao.temperatura, sensTermica: previsao.sensTermica, umidade: previsao.umidade, velocVento: previsao.velocVento, data: previsao.data, tempoLocal: previsao.tempoLocal)
         return cell
     }
     

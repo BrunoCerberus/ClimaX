@@ -29,29 +29,33 @@ class Previsao: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit() {
+    func commonInit(temp: String, sensTermica: String, umidade: String, velocVento: Double, data: String, tempoLocal: TempoLocal) {
         
+        self.temperatura.text = temp
+        self.sensTermica.text = sensTermica
+        self.umidade.text = umidade
+        self.velocVento.text = "\(velocVento)"
+        self.diaDaSemana.text = data
         
-//        switch tempo.tempoLocal.rawValue {
-//
-//        case TempoLocal.ensolarado.rawValue:
-//            self.climaImage.image = #imageLiteral(resourceName: "sunny")
-//            break
-//        case TempoLocal.chuvoso.rawValue:
-//            self.climaImage.image = #imageLiteral(resourceName: "drop")
-//            break
-//        case TempoLocal.fechado.rawValue:
-//            self.climaImage.image = #imageLiteral(resourceName: "cloud")
-//            break
-//        case TempoLocal.tepestade.rawValue:
-//            self.climaImage.image = #imageLiteral(resourceName: "storm")
-//            break
-//        case TempoLocal.vendaval.rawValue:
-//            self.climaImage.image = #imageLiteral(resourceName: "wind")
-//            break
-//        default: break
-//
-//        }
+        switch tempoLocal {
+
+        case TempoLocal.ensolarado:
+            self.climaImage.image = #imageLiteral(resourceName: "sunny")
+            break
+        case TempoLocal.chuvoso:
+            self.climaImage.image = #imageLiteral(resourceName: "rain")
+            break
+        case TempoLocal.fechado:
+            self.climaImage.image = #imageLiteral(resourceName: "fog")
+            break
+        case TempoLocal.tepestade:
+            self.climaImage.image = #imageLiteral(resourceName: "storm")
+            break
+        case TempoLocal.vendaval:
+            self.climaImage.image = #imageLiteral(resourceName: "umbrella")
+            break
+            
+        }
     }
     
 }
