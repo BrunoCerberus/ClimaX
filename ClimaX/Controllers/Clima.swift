@@ -54,6 +54,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         if firstUpdate {
             if let _latitude = locations.first?.coordinate.latitude {
                 if let _longitude = locations.first?.coordinate.longitude {
+                    SVProgressHUD.show()
                     firstUpdate = false
                     self.gerenciadorDeLocalizacao.stopUpdatingLocation()
                     self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
@@ -131,6 +132,7 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             for previsao in data.arrayValue {
                 self.previsaoTempo.append(Tempo(json: previsao))
             }
+            SVProgressHUD.dismiss()
             self.tableView.reloadData()
         }
     }
