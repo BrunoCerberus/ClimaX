@@ -104,6 +104,12 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         }
     }
     
+    
+    /// Pesquisa o ID baseado no nome da cidade
+    ///
+    /// - Parameters:
+    ///   - cidade: Nome da cidade
+    ///   - estado: UF do estado
     func pesquisaIDCidade(_ cidade: String, _ estado: String) {
         
         //Request with response handling
