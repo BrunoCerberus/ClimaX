@@ -25,6 +25,10 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hides the shadow line of the nav bar
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 
         self.auth = Auth.auth()
         configLocationManager()
@@ -96,12 +100,9 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     @IBAction func sair(_ sender: Any) {
         
-        do {
-            try self.auth.signOut()
-            self.dismiss(animated: true, completion: nil)
-        } catch let erro {
-            print("Erro: " + erro.localizedDescription)
-        }
+        let alerta = GlobalAlert(with: self, msg: "Deseja sair?", confirmButton: false, confirmAndCancelButton: true, isModal: true)
+        alerta.logout()
+      
     }
     
     
