@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15FF95DD2094DA65003E2362 /* TempoCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF95DC2094DA65003E2362 /* TempoCodable.swift */; };
 		3F01E93DD55E381A25FEAAC7 /* Pods_ClimaX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD37EBABA67A91B3E5C2E47 /* Pods_ClimaX.framework */; };
 		EC1B4E86201E1A810003C410 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */; };
 		EC1B4E8B201E1CBC0003C410 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1B4E8A201E1CBC0003C410 /* Login.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15FF95DC2094DA65003E2362 /* TempoCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoCodable.swift; sourceTree = "<group>"; };
 		8D84EEC600CF0DB03D973446 /* Pods-ClimaX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX.release.xcconfig"; sourceTree = "<group>"; };
 		C296D2632397210B3757C889 /* Pods-ClimaX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX.debug.xcconfig"; sourceTree = "<group>"; };
 		DFD37EBABA67A91B3E5C2E47 /* Pods_ClimaX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClimaX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				ECCA34532024E68D00070347 /* Tempo.swift */,
+				15FF95DC2094DA65003E2362 /* TempoCodable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				EC1B4E8D201E257D0003C410 /* SignUp.swift in Sources */,
 				EC75A9BF201DF84100F26204 /* ClimaX.xcdatamodeld in Sources */,
 				ECAEAD05201E42700031F4D4 /* Base64.swift in Sources */,
+				15FF95DD2094DA65003E2362 /* TempoCodable.swift in Sources */,
 				ECAEAD0C201E4A2A0031F4D4 /* Grafico.swift in Sources */,
 				ECCA34542024E68D00070347 /* Tempo.swift in Sources */,
 				ECAEAD0A201E4A160031F4D4 /* Mapa.swift in Sources */,
