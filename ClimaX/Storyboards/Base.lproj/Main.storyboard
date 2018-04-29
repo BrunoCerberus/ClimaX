@@ -110,10 +110,10 @@
         <scene sceneID="r7X-EO-L8Y">
             <objects>
                 <tabBarController id="ED0-Zp-dqM" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Hr-of-dNy">
+                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Hr-of-dNy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.95686274509803926" green="0.92156862745098034" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="dsd-7o-Bst" kind="relationship" relationship="viewControllers" id="rc4-Yt-r4t"/>
@@ -172,43 +172,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="ic1-eM-TaO" id="p8f-Xj-DUX"/>
-                        <segue destination="hRk-Mc-k14" kind="popoverPresentation" identifier="showDetail" popoverAnchorView="QqL-22-q9c" id="ZeL-ut-d3g">
-                            <popoverArrowDirection key="popoverArrowDirection"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtW-U1-uo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3501.5999999999999" y="-857.72113943028489"/>
-        </scene>
-        <!--Detalhe Clima View Controller-->
-        <scene sceneID="8wE-xk-Jg5">
-            <objects>
-                <viewController id="hRk-Mc-k14" customClass="DetalheClimaViewController" customModule="ClimaX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="u8F-rZ-Bsp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="As5-Yx-9iF">
-                                <rect key="frame" x="16" y="117" width="343" height="433"/>
-                                <color key="backgroundColor" red="0.0" green="0.49411764705882355" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="Dm8-oK-EB4"/>
-                                    <constraint firstAttribute="height" constant="433" id="zSb-6L-E4K"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="As5-Yx-9iF" firstAttribute="centerY" secondItem="u8F-rZ-Bsp" secondAttribute="centerY" id="mbH-iL-SOm"/>
-                            <constraint firstItem="As5-Yx-9iF" firstAttribute="centerX" secondItem="u8F-rZ-Bsp" secondAttribute="centerX" id="url-41-6DA"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="mmt-vD-oRp"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7f6-nh-kqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4551.1999999999998" y="-853.22338830584715"/>
         </scene>
         <!--Mapa-->
         <scene sceneID="zLI-At-pK3">
