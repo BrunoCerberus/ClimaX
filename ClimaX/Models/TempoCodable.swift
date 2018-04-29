@@ -6,6 +6,10 @@
 //  Copyright © 2018 Bruno Lopes de Mello. All rights reserved.
 //
 
+// To parse the JSON, add this file to your project and do:
+//
+//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
+
 import Foundation
 
 struct Welcome: Codable {
@@ -19,29 +23,10 @@ struct Datum: Codable {
     let humidity: Humidity
     let rain: Rain
     let wind: Wind
-    let uv: Uv
+    let uv: Uv?
     let thermalSensation: Humidity
     let textIcon: TextIcon
     let temperature: Temperature
-    var tempoLocal: TempoLocal! 
-    
-    mutating func getTempoLocal() {
-        
-        if rain.probability >= 60 {
-            tempoLocal = TempoLocal.chuvoso
-        } else {
-            if (textIcon.text.pt.range(of: "Sol") != nil) || (textIcon.text.pt.range(of: "sol") != nil) {
-                //we have sun
-                tempoLocal = TempoLocal.ensolarado
-            } else if (textIcon.text.pt.range(of: "Nublado") != nil) || (textIcon.text.pt.range(of: "nublado") != nil) || (textIcon.text.pt.range(of: "nuvens") != nil) || (textIcon.text.pt.range(of: "Nuvens") != nil) {
-                //we have a cloudy weather
-                tempoLocal = TempoLocal.fechado
-            }
-            else {
-                tempoLocal = TempoLocal.vendaval
-            }
-        }
-    }
     
     enum CodingKeys: String, CodingKey {
         case date
@@ -100,4 +85,3 @@ struct Wind: Codable {
         case direction
     }
 }
-

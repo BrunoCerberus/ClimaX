@@ -152,14 +152,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let temperatura = (previsaoTempo[indexPath.row].temperature.max + previsaoTempo[indexPath.row].temperature.min)/2
-        let sensasaoTermica = (previsaoTempo[indexPath.row].thermalSensation.max + previsaoTempo[indexPath.row].thermalSensation.min)/2
-        let umidade = (previsaoTempo[indexPath.row].humidity.max + previsaoTempo[indexPath.row].humidity.min)/2
-        let velocVento = previsaoTempo[indexPath.row].wind.velocityAvg
-        let data = previsaoTempo[indexPath.row].dateBr
-        previsaoTempo[indexPath.row].getTempoLocal()
-        let tempoLocal = previsaoTempo[indexPath.row].tempoLocal
-        cell.commonInit(temp: "\(temperatura)", sensTermica: "\(sensasaoTermica)", umidade: "\(umidade)", velocVento: Double(velocVento), data: data, tempoLocal:tempoLocal!)
+        let previsao = previsaoTempo[indexPath.row]
+        cell.commonInit(previsaoTempo: previsao)
         return cell
     }
     
