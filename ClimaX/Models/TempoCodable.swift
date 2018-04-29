@@ -27,7 +27,7 @@ struct Datum: Codable {
     
     mutating func getTempoLocal() {
         
-        if rain.probability >= 30 {
+        if rain.probability >= 60 {
             tempoLocal = TempoLocal.chuvoso
         } else {
             if (textIcon.text.pt.range(of: "Sol") != nil) || (textIcon.text.pt.range(of: "sol") != nil) {

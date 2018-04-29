@@ -163,4 +163,9 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
+    }
+    
 }
