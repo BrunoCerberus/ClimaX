@@ -523,6 +523,24 @@
                                                     <action selector="confirmar:" destination="UGn-53-Zw5" eventType="touchUpInside" id="Y8G-hc-GCD"/>
                                                 </connections>
                                             </button>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79b-fp-chy">
+                                                <rect key="frame" x="0.0" y="0.0" width="285" height="355"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X30-jp-rPS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="1000"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1000" id="Qyh-2M-UvE"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="X30-jp-rPS" secondAttribute="bottom" constant="1" id="Kkj-y9-xUz"/>
+                                                    <constraint firstItem="X30-jp-rPS" firstAttribute="top" secondItem="79b-fp-chy" secondAttribute="top" id="Z1K-Wl-PPz"/>
+                                                    <constraint firstAttribute="trailing" secondItem="X30-jp-rPS" secondAttribute="trailing" id="nwX-LD-PNI"/>
+                                                    <constraint firstItem="X30-jp-rPS" firstAttribute="leading" secondItem="79b-fp-chy" secondAttribute="leading" id="vaf-42-krz"/>
+                                                </constraints>
+                                            </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -531,8 +549,13 @@
                                             <constraint firstAttribute="height" constant="421" id="7ey-wq-eza"/>
                                             <constraint firstItem="G4Q-El-DZw" firstAttribute="top" secondItem="gGi-S1-mPs" secondAttribute="bottom" constant="20" id="HkD-5r-Dxi"/>
                                             <constraint firstItem="gGi-S1-mPs" firstAttribute="leading" secondItem="He9-QN-nUo" secondAttribute="leading" id="Jhf-sG-cjN"/>
+                                            <constraint firstItem="79b-fp-chy" firstAttribute="top" secondItem="He9-QN-nUo" secondAttribute="top" id="Qii-dT-Hr2"/>
+                                            <constraint firstItem="gGi-S1-mPs" firstAttribute="top" secondItem="79b-fp-chy" secondAttribute="bottom" constant="1" id="RKb-Hg-FXI"/>
+                                            <constraint firstItem="X30-jp-rPS" firstAttribute="width" secondItem="He9-QN-nUo" secondAttribute="width" id="d0H-4w-aue"/>
                                             <constraint firstAttribute="trailing" secondItem="gGi-S1-mPs" secondAttribute="trailing" id="ePD-eF-3Oa"/>
                                             <constraint firstAttribute="bottom" secondItem="G4Q-El-DZw" secondAttribute="bottom" constant="15" id="kVh-uO-40A"/>
+                                            <constraint firstItem="79b-fp-chy" firstAttribute="leading" secondItem="He9-QN-nUo" secondAttribute="leading" id="rPm-b2-Q4l"/>
+                                            <constraint firstAttribute="trailing" secondItem="79b-fp-chy" secondAttribute="trailing" id="tZd-dK-wpu"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -561,6 +584,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="K2V-Hv-uGc"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9q-Lj-hrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
