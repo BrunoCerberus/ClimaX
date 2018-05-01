@@ -31,7 +31,7 @@ struct GlobalAlert {
         let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertControllerStyle.alert)
         let confirmAction = UIAlertAction(title: "ok", style: .default, handler: nil)
         alerta.addAction(confirmAction)
-        self.controller.show(alerta, sender: nil)
+        self.controller.present(alerta, animated: true, completion: nil)
     }
     
     func showAlertAndReturn() {

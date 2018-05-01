@@ -12,6 +12,7 @@ import MapKit
 import SwiftyJSON
 import SVProgressHUD
 import Alamofire
+import GooglePlaces
 
 class Clima: UIViewController {
     
@@ -26,6 +27,11 @@ class Clima: UIViewController {
     var previsaoSelecionada: Datum!
     var cidade: String? = nil
     var idCidade: String? = nil
+    var searchResultController: SearchResultsController!
+    var searchController: UISearchController!
+    var gmsFetcher: GMSAutocompleteFetcher!
+    var resultArray: [String] = []
+    var searchBar: UISearchBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,25 @@ class Clima: UIViewController {
         self.auth = Auth.auth()
         configLocationManager()
         configCell()
+        loadFetcher()
+        loadSearchResultController()
+        configSearchBar()
+    }
+    
+    func configSearchBar() {
+        searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.placeholder = "Digite a cidade"
+    }
+    
+    func loadFetcher() {
+        gmsFetcher = GMSAutocompleteFetcher()
+        gmsFetcher.delegate = self
+    }
+    
+    func loadSearchResultController() {
+        searchResultController = SearchResultsController()
+        searchResultController.delegate = self
     }
     
     //Register the Xib Cell
@@ -75,12 +100,18 @@ class Clima: UIViewController {
         request("http://apiadvisor.climatempo.com.br/api/v1/locale/city", method: .get, parameters: ["name":cidade, "state":estado, "token":myToken]).responseJSON { (response) in
             
             let json = JSON(response.result.value!)
-            for object in json.arrayValue {
-                let cityID = object["id"].intValue
-                print("City ID: \(cityID)")
-                DispatchQueue.main.async(execute: {
-                    self.pesquisaClimaJSON(cityID)
-                })
+            if !json.isEmpty {
+                for object in json.arrayValue {
+                    let cityID = object["id"].intValue
+                    print("City ID: \(cityID)")
+                    DispatchQueue.main.async(execute: {
+                        self.pesquisaClimaJSON(cityID)
+                    })
+                }
+            } else {//consulta veio vazia []
+                SVProgressHUD.dismiss()
+                let alert = GlobalAlert(with: self, msg: "Não foi possível obter a previsão deste local", confirmButton: true, confirmAndCancelButton: false, isModal: true)
+                alert.showAlert()
             }
             
         }
@@ -115,8 +146,21 @@ class Clima: UIViewController {
         }
     }
     
+    @IBAction func searchPlace(_ sender: Any) {
+        
+        self.searchController = UISearchController(searchResultsController: searchResultController)
+        self.searchController.searchBar.delegate = self
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.dimsBackgroundDuringPresentation = false
+        
+        self.present(self.searchController, animated:true, completion: nil)
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
 }
-
 
 // MARK: - <#UITableViewDelegate, UITableViewDataSource#>
 extension Clima: UITableViewDelegate, UITableViewDataSource {
@@ -170,7 +214,7 @@ extension Clima: CLLocationManagerDelegate {
     
     //Loads the data based on current latitude and longitude location
     func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        
+        SVProgressHUD.show()
         let localAtual = CLLocation(latitude: latitude, longitude: longitude)
         
         CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
@@ -187,9 +231,67 @@ extension Clima: CLLocationManagerDelegate {
                         }
                     }
                     
+                } else {//nao foi possivel de obter o local
+                    SVProgressHUD.dismiss()
                 }
                 
+            } else {//algo deu errado
+                SVProgressHUD.dismiss()
             }
         }
+    }
+}
+
+
+// MARK: - <#LocateOnTheMap#>
+extension Clima: LocateOnTheMap {
+    
+    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
+        self.carregaDadosLocal(latitude: lat, longitude: lon)
+    }
+    
+    
+}
+
+
+// MARK: - <#GMSAutocompleteFetcherDelegate#>
+extension Clima: GMSAutocompleteFetcherDelegate {
+    
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        //self.resultsArray.count + 1
+        
+        for prediction in predictions {
+            
+            if let prediction = prediction as GMSAutocompletePrediction?{
+                self.resultArray.append(prediction.attributedFullText.string)
+            }
+        }
+        self.searchResultController.reloadDataWithArray(self.resultArray)
+        //   self.searchResultsTable.reloadDataWithArray(self.resultsArray)
+        print(resultArray)
+    }
+    
+    func didFailAutocompleteWithError(_ error: Error) {
+        //now, do nothing
+    }
+    
+}
+
+
+// MARK: - <#UISearchBarDelegate#>
+extension Clima: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.resultArray.removeAll()
+        gmsFetcher?.sourceTextHasChanged(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.resultArray.removeAll()
+        self.dismissKeyboard()
+        self.searchController.dismiss(animated: true, completion: nil)
+        
+        //aqui vai vim a pesquisa com base no nome com o CLGeocoder
+        carregaDadosLocal(PorNome: self.searchController.searchBar.text ?? "")
     }
 }

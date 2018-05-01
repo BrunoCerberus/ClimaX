@@ -172,7 +172,11 @@
                                 <action selector="sair:" destination="Sf0-o3-yn6" id="QrB-3F-p1T"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="UBj-5V-qS7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="UBj-5V-qS7">
+                            <connections>
+                                <action selector="searchPlace:" destination="Sf0-o3-yn6" id="Qs6-KN-Ipj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
