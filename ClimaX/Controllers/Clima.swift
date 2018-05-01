@@ -32,6 +32,7 @@ class Clima: UIViewController {
     var gmsFetcher: GMSAutocompleteFetcher!
     var resultArray: [String] = []
     var searchBar: UISearchBar!
+    var listaVazia: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,15 @@ class Clima: UIViewController {
         loadFetcher()
         loadSearchResultController()
         configSearchBar()
+        
+        self.listaVazia = self.viewVazia()
+    }
+    
+    func viewVazia() -> UIView {
+        let tabelaVazia = Bundle.main.loadNibNamed("EmptyView", owner: self, options: nil)![0] as! UIView
+        tabelaVazia.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.tableView.frame.size.height)
+        
+        return tabelaVazia
     }
     
     func configSearchBar() {
@@ -131,6 +141,8 @@ class Clima: UIViewController {
                 self.tableView.reloadData()
             } else {
                 self.dismissProgress()
+                self.tableView.addSubview(self.listaVazia)
+                self.tableView.isScrollEnabled = false
                 let alert = GlobalAlert(with: self, msg: "Algo deu errado, tente novamente mais tarde")
                 alert.showAlert()
             }
@@ -165,6 +177,8 @@ class Clima: UIViewController {
     }
     
     func showProgress() {
+        self.listaVazia.removeFromSuperview()
+        self.tableView.isScrollEnabled = true
         SVProgressHUD.show()
         if !UIApplication.shared.isIgnoringInteractionEvents {
             UIApplication.shared.beginIgnoringInteractionEvents()
