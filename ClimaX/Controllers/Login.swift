@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class Login: UIViewController, UITextFieldDelegate {
+class Login: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var senha: UITextField!
@@ -49,18 +49,6 @@ class Login: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if textField == email {
-            self.senha.becomeFirstResponder()
-        } else {
-            self.view.endEditing(true)
-            self.loginNow()
-        }
-        
-        return false
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -87,5 +75,24 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
 
+}
+
+
+// MARK: - <#UITextFieldDelegate#>
+extension Login: UITextFieldDelegate {
+ 
+    //quando o usuario aperta o return button do keyboard pad
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == email {
+            self.senha.becomeFirstResponder()
+        } else {
+            self.view.endEditing(true)
+            self.loginNow()
+        }
+        
+        return false
+    }
+    
 }
 

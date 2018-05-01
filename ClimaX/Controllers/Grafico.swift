@@ -26,12 +26,8 @@ class Grafico: UIViewController {
 
     @IBAction func sair(_ sender: Any) {
         
-        do {
-            try self.auth.signOut()
-            self.dismiss(animated: true, completion: nil)
-        } catch let erro {
-            print("Erro: " + erro.localizedDescription)
-        }
+        let alerta = GlobalAlert(with: self, msg: "Deseja sair?", confirmButton: false, confirmAndCancelButton: true, isModal: true)
+        alerta.logout()
         
     }
     

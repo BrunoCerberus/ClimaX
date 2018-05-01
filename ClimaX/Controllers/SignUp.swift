@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class SignUp: UIViewController, UITextFieldDelegate {
+class SignUp: UIViewController {
     
     @IBOutlet weak var nome: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -38,28 +38,6 @@ class SignUp: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        switch textField {
-            
-        case nome:
-            self.email.becomeFirstResponder()
-            break
-        case email:
-            self.senha.becomeFirstResponder()
-            break
-        case senha:
-            self.confirmaSenha.becomeFirstResponder()
-            break
-        default:
-            self.view.endEditing(true)
-            self.cadastraUsuario()
-            break
-        }
-        
-        return false
     }
     
     @IBAction func cadastrar(_ sender: Any) {
@@ -136,6 +114,32 @@ class SignUp: UIViewController, UITextFieldDelegate {
             // exibir alerta
         }
     }
-    
 
+}
+
+// MARK: - <#UITextFieldDelegate#>
+extension SignUp: UITextFieldDelegate {
+    
+    //quando o usuario aperta o return button do keyboard pad
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+            
+        case nome:
+            self.email.becomeFirstResponder()
+            break
+        case email:
+            self.senha.becomeFirstResponder()
+            break
+        case senha:
+            self.confirmaSenha.becomeFirstResponder()
+            break
+        default:
+            self.view.endEditing(true)
+            self.cadastraUsuario()
+            break
+        }
+        
+        return false
+    }
 }
