@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import GoogleMaps
 import GooglePlaces
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GMSServices.provideAPIKey(" AIzaSyDyhdj4zM_g7ebc992UQGK3MdPH2UIURUQ ")
         GMSPlacesClient.provideAPIKey(" AIzaSyASY-f8iVjhUBQkEQlr5oRie5Lh7UUjcfw ")
+        
+        //configuração do SVProgress
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.clear)
         
         return true
     }

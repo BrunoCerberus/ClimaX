@@ -109,7 +109,7 @@ class Clima: UIViewController {
                     })
                 }
             } else {//consulta veio vazia []
-                SVProgressHUD.dismiss()
+                self.dismissProgress()
                 let alert = GlobalAlert(with: self, msg: "Não foi possível obter a previsão deste local", confirmButton: true, confirmAndCancelButton: false, isModal: true)
                 alert.showAlert()
             }
@@ -127,9 +127,13 @@ class Clima: UIViewController {
                 self.cidade = welcome?.name ?? ""
                 self.idCidade = "\(welcome?.id ?? 0)"
                 self.previsaoTempo = climas
+                self.dismissProgress()
+                self.tableView.reloadData()
+            } else {
+                self.dismissProgress()
+                let alert = GlobalAlert(with: self, msg: "Algo deu errado, tente novamente mais tarde")
+                alert.showAlert()
             }
-            SVProgressHUD.dismiss()
-            self.tableView.reloadData()
         }
     }
     
@@ -158,6 +162,20 @@ class Clima: UIViewController {
     
     func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    func showProgress() {
+        SVProgressHUD.show()
+        if !UIApplication.shared.isIgnoringInteractionEvents {
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+    }
+    
+    func dismissProgress() {
+        SVProgressHUD.dismiss()
+        if UIApplication.shared.isIgnoringInteractionEvents {
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
     }
     
 }
@@ -203,7 +221,7 @@ extension Clima: CLLocationManagerDelegate {
         if firstUpdate {
             if let _latitude = locations.first?.coordinate.latitude {
                 if let _longitude = locations.first?.coordinate.longitude {
-                    SVProgressHUD.show()
+                    showProgress()
                     firstUpdate = false
                     self.gerenciadorDeLocalizacao.stopUpdatingLocation()
                     self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
@@ -214,7 +232,7 @@ extension Clima: CLLocationManagerDelegate {
     
     //Loads the data based on current latitude and longitude location
     func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        SVProgressHUD.show()
+        showProgress()
         let localAtual = CLLocation(latitude: latitude, longitude: longitude)
         
         CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
@@ -232,11 +250,11 @@ extension Clima: CLLocationManagerDelegate {
                     }
                     
                 } else {//nao foi possivel de obter o local
-                    SVProgressHUD.dismiss()
+                    self.dismissProgress()
                 }
                 
             } else {//algo deu errado
-                SVProgressHUD.dismiss()
+                self.dismissProgress()
             }
         }
     }
