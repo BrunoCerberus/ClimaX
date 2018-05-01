@@ -23,7 +23,7 @@ struct Datum: Codable {
     let humidity: Humidity
     let rain: Rain
     let wind: Wind
-    let uv: Uv?
+    let uv: Uv
     let thermalSensation: Humidity
     let textIcon: TextIcon
     let temperature: Temperature
@@ -62,7 +62,8 @@ struct Icon: Codable {
 }
 
 struct Text: Codable {
-    let pt, en, es: String
+    let pt: String
+    let en, es: String?
     let phrase: Icon
 }
 
