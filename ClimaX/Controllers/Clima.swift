@@ -13,9 +13,10 @@ import SwiftyJSON
 import SVProgressHUD
 import Alamofire
 
-class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class Clima: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pesquisa: UIBarButtonItem!
     
     var auth:Auth!
     var gerenciadorDeLocalizacao = CLLocationManager()
@@ -38,13 +39,6 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         configCell()
     }
     
-    func configLocationManager() {
-        self.gerenciadorDeLocalizacao.delegate = self
-        self.gerenciadorDeLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
-        self.gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
-        self.gerenciadorDeLocalizacao.startUpdatingLocation()
-    }
-    
     //Register the Xib Cell
     func configCell() {
         let nibName = UINib(nibName: "Previsao", bundle: nil)
@@ -54,45 +48,6 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if firstUpdate {
-            if let _latitude = locations.first?.coordinate.latitude {
-                if let _longitude = locations.first?.coordinate.longitude {
-                    SVProgressHUD.show()
-                    firstUpdate = false
-                    self.gerenciadorDeLocalizacao.stopUpdatingLocation()
-                    self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
-                }
-            }
-        }
-    }
-    
-    //Loads the data based on current latitude and longitude location
-    func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        
-        let localAtual = CLLocation(latitude: latitude, longitude: longitude)
-        
-        CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
-            
-            if erro == nil {
-                //Sucesso ao carregar as coordenadas do local
-                
-                if let dadosLocal = local?.first {
-                    
-                    //loads the city name
-                    if let city = dadosLocal.locality {
-                        if let state = dadosLocal.administrativeArea {
-                            self.pesquisaIDCidade(city, state)
-                        }
-                    }
-                    
-                }
-                
-            }
-        }
     }
     
     //Loads the latitude and longitude based on the name of location
@@ -147,6 +102,25 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            if let controller = segue.destination as? DetalheClimaViewController {
+                
+                if (!(self.cidade?.isEmpty)! || self.cidade != nil || !(self.idCidade?.isEmpty)! || self.idCidade != "0"){
+                    controller.cidade = self.cidade
+                    controller.idCidade = self.idCidade
+                    controller.previsao = self.previsaoSelecionada
+                }
+            }
+        }
+    }
+    
+}
+
+
+// MARK: - <#UITableViewDelegate, UITableViewDataSource#>
+extension Clima: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -167,18 +141,55 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
         self.previsaoSelecionada = previsaoTempo[indexPath.row]
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
+}
+
+
+// MARK: - <#CLLocationManagerDelegate#>
+extension Clima: CLLocationManagerDelegate {
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let controller = segue.destination as? DetalheClimaViewController {
-                
-                if (!(self.cidade?.isEmpty)! || self.cidade != nil || !(self.idCidade?.isEmpty)! || self.idCidade != "0"){
-                    controller.cidade = self.cidade
-                    controller.idCidade = self.idCidade
-                    controller.previsao = self.previsaoSelecionada
+    func configLocationManager() {
+        self.gerenciadorDeLocalizacao.delegate = self
+        self.gerenciadorDeLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
+        self.gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
+        self.gerenciadorDeLocalizacao.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if firstUpdate {
+            if let _latitude = locations.first?.coordinate.latitude {
+                if let _longitude = locations.first?.coordinate.longitude {
+                    SVProgressHUD.show()
+                    firstUpdate = false
+                    self.gerenciadorDeLocalizacao.stopUpdatingLocation()
+                    self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
                 }
             }
         }
     }
     
+    //Loads the data based on current latitude and longitude location
+    func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        
+        let localAtual = CLLocation(latitude: latitude, longitude: longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
+            
+            if erro == nil {
+                //Sucesso ao carregar as coordenadas do local
+                
+                if let dadosLocal = local?.first {
+                    
+                    //loads the city name
+                    if let city = dadosLocal.locality {
+                        if let state = dadosLocal.administrativeArea {
+                            self.pesquisaIDCidade(city, state)
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+    }
 }

@@ -176,6 +176,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="pesquisa" destination="UBj-5V-qS7" id="Sbt-3N-NBz"/>
                         <outlet property="tableView" destination="ic1-eM-TaO" id="p8f-Xj-DUX"/>
                         <segue destination="UGn-53-Zw5" kind="presentation" identifier="showDetail" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="j1C-ai-FP7"/>
                     </connections>
