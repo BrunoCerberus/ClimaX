@@ -42,7 +42,7 @@ class DetalheClimaViewController: UIViewController {
             self.umidade.text = "\((_previsao.humidity.max + _previsao.humidity.min)/2)"
             self.probabilidadeDeChuva.text = "\(_previsao.rain.probability)%"
             self.velocDoVento.text = "\(_previsao.wind.velocityAvg)km/h"
-            self.intensidadeUV.text = "\(_previsao.uv?.max ?? 0)"
+            self.intensidadeUV.text = "\(_previsao.uv.max)"
             self.sensacaoTermica.text = "\((_previsao.thermalSensation.max + _previsao.thermalSensation.min)/2)C"
             self.tempMax.text = "\(_previsao.temperature.max)C"
             self.tempMin.text = "\(_previsao.temperature.min)C"
