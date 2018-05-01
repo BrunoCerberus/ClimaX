@@ -23,6 +23,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     let myToken = "0925e8c6873f32e349f881fa1da4564e"
     var previsaoTempo: [Datum] = []
     var previsaoSelecionada: Datum!
+    var cidade: String? = nil
+    var idCidade: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +138,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             
             let welcome = try? JSONDecoder().decode(Welcome.self, from: response.data!)
             if let climas = welcome?.data {
+                self.cidade = welcome?.name ?? ""
+                self.idCidade = "\(welcome?.id ?? 0)"
                 self.previsaoTempo = climas
             }
             SVProgressHUD.dismiss()
@@ -160,12 +164,20 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        self.previsaoSelecionada = previsaoTempo[indexPath.row]
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-           
+            if let controller = segue.destination as? DetalheClimaViewController {
+                
+                if (!(self.cidade?.isEmpty)! || self.cidade != nil || !(self.idCidade?.isEmpty)! || self.idCidade != "0"){
+                    controller.cidade = self.cidade
+                    controller.idCidade = self.idCidade
+                    controller.previsao = self.previsaoSelecionada
+                }
+            }
         }
     }
     
