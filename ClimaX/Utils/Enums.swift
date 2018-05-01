@@ -9,5 +9,5 @@
 import Foundation
 
 enum TempoLocal: String {
-    case ensolarado, fechado, chuvoso, tepestade, vendaval
+    case ensolarado, solComNuvens, solComChuva, fechado, chuvoso, tepestade, vendaval, neve
 }

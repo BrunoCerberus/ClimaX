@@ -38,19 +38,36 @@ class Previsao: UITableViewCell {
         let data = previsaoTempo.dateBr
         var tempoLocal: TempoLocal
         
-        if previsaoTempo.rain.probability >= 60 {
+        switch previsaoTempo.textIcon.icon.day {
+        case "1":
+            tempoLocal = TempoLocal.ensolarado
+            break
+        case "2":
+            tempoLocal = TempoLocal.solComNuvens
+            break
+        case "3":
+            tempoLocal = TempoLocal.fechado
+            break
+        case "4":
+            tempoLocal = TempoLocal.solComChuva
+            break
+        case "5":
             tempoLocal = TempoLocal.chuvoso
-        } else {
-            if (previsaoTempo.textIcon.text.pt.range(of: "Sol") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "sol") != nil) {
-                //we have sun
-                tempoLocal = TempoLocal.ensolarado
-            } else if (previsaoTempo.textIcon.text.pt.range(of: "Nublado") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "nublado") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "nuvens") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "Nuvens") != nil) {
-                //we have a cloudy weather
-                tempoLocal = TempoLocal.fechado
-            }
-            else {
-                tempoLocal = TempoLocal.vendaval
-            }
+            break
+        case "6":
+            tempoLocal = TempoLocal.tepestade
+            break
+        case "7":
+            tempoLocal = TempoLocal.vendaval
+            break
+        case "8":
+            tempoLocal = TempoLocal.neve
+            break
+        case "9":
+            tempoLocal = TempoLocal.solComNuvens
+            break
+        default:
+            tempoLocal = TempoLocal.ensolarado
         }
         
         self.temperatura.text = "Temperaturas: " + "\(temperatura)"
@@ -75,6 +92,15 @@ class Previsao: UITableViewCell {
             break
         case TempoLocal.vendaval:
             self.climaImage.image = #imageLiteral(resourceName: "umbrella")
+            break
+        case TempoLocal.neve:
+            self.climaImage.image = #imageLiteral(resourceName: "snowflake")
+            break
+        case TempoLocal.solComNuvens:
+            self.climaImage.image = #imageLiteral(resourceName: "clouds-and-sun")
+            break
+        case TempoLocal.solComChuva:
+            self.climaImage.image = #imageLiteral(resourceName: "sun_and_rain")
             break
             
         }
