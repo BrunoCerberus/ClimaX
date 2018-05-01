@@ -29,11 +29,33 @@ class Previsao: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(temp: String, sensTermica: String, umidade: String, velocVento: Double, data: String, tempoLocal: TempoLocal) {
+    func commonInit(previsaoTempo: Datum) {
         
-        self.temperatura.text = "Temperaturas: " + temp
-        self.sensTermica.text = "Sensação: " + sensTermica
-        self.umidade.text = "Umidade: " + umidade
+        let temperatura = (previsaoTempo.temperature.max + previsaoTempo.temperature.min)/2
+        let sensasaoTermica = (previsaoTempo.thermalSensation.max + previsaoTempo.thermalSensation.min)/2
+        let umidade = (previsaoTempo.humidity.max + previsaoTempo.humidity.min)/2
+        let velocVento = previsaoTempo.wind.velocityAvg
+        let data = previsaoTempo.dateBr
+        var tempoLocal: TempoLocal
+        
+        if previsaoTempo.rain.probability >= 60 {
+            tempoLocal = TempoLocal.chuvoso
+        } else {
+            if (previsaoTempo.textIcon.text.pt.range(of: "Sol") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "sol") != nil) {
+                //we have sun
+                tempoLocal = TempoLocal.ensolarado
+            } else if (previsaoTempo.textIcon.text.pt.range(of: "Nublado") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "nublado") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "nuvens") != nil) || (previsaoTempo.textIcon.text.pt.range(of: "Nuvens") != nil) {
+                //we have a cloudy weather
+                tempoLocal = TempoLocal.fechado
+            }
+            else {
+                tempoLocal = TempoLocal.vendaval
+            }
+        }
+        
+        self.temperatura.text = "Temperaturas: " + "\(temperatura)"
+        self.sensTermica.text = "Sensação: " + "\(sensasaoTermica)"
+        self.umidade.text = "Umidade: " + "\(umidade)"
         self.velocVento.text = "Velocidade do vento: \(velocVento)KM/h"
         self.diaDaSemana.text = data
         

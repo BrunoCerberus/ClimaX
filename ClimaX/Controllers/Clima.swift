@@ -22,6 +22,9 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     var firstUpdate: Bool = true
     let myToken = "0925e8c6873f32e349f881fa1da4564e"
     var previsaoTempo: [Datum] = []
+    var previsaoSelecionada: Datum!
+    var cidade: String? = nil
+    var idCidade: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +138,8 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
             
             let welcome = try? JSONDecoder().decode(Welcome.self, from: response.data!)
             if let climas = welcome?.data {
+                self.cidade = welcome?.name ?? ""
+                self.idCidade = "\(welcome?.id ?? 0)"
                 self.previsaoTempo = climas
             }
             SVProgressHUD.dismiss()
@@ -152,15 +157,28 @@ class Clima: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLoc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let temperatura = (previsaoTempo[indexPath.row].temperature.max + previsaoTempo[indexPath.row].temperature.min)/2
-        let sensasaoTermica = (previsaoTempo[indexPath.row].thermalSensation.max + previsaoTempo[indexPath.row].thermalSensation.min)/2
-        let umidade = (previsaoTempo[indexPath.row].humidity.max + previsaoTempo[indexPath.row].humidity.min)/2
-        let velocVento = previsaoTempo[indexPath.row].wind.velocityAvg
-        let data = previsaoTempo[indexPath.row].dateBr
-        previsaoTempo[indexPath.row].getTempoLocal()
-        let tempoLocal = previsaoTempo[indexPath.row].tempoLocal
-        cell.commonInit(temp: "\(temperatura)", sensTermica: "\(sensasaoTermica)", umidade: "\(umidade)", velocVento: Double(velocVento), data: data, tempoLocal:tempoLocal!)
+        let previsao = previsaoTempo[indexPath.row]
+        cell.commonInit(previsaoTempo: previsao)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.previsaoSelecionada = previsaoTempo[indexPath.row]
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            if let controller = segue.destination as? DetalheClimaViewController {
+                
+                if (!(self.cidade?.isEmpty)! || self.cidade != nil || !(self.idCidade?.isEmpty)! || self.idCidade != "0"){
+                    controller.cidade = self.cidade
+                    controller.idCidade = self.idCidade
+                    controller.previsao = self.previsaoSelecionada
+                }
+            }
+        }
     }
     
 }
