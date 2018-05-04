@@ -22,6 +22,14 @@ class Previsao: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func prepareForReuse() {
+        self.temperatura.text = ""
+        self.sensTermica.text = ""
+        self.umidade.text = ""
+        self.velocVento.text = ""
+        self.diaDaSemana.text = ""
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

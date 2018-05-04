@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1544D4F9209C18BF0091F786 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4F8209C18BF0091F786 /* Utils.swift */; };
+		1544D4FC209C1B5E0091F786 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FB209C1B5E0091F786 /* ExtString.swift */; };
+		1544D4FE209C1D0E0091F786 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FD209C1D0E0091F786 /* ExtDate.swift */; };
+		1544D500209C1D840091F786 /* ExtNSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FF209C1D840091F786 /* ExtNSDate.swift */; };
+		1544D502209C1DC00091F786 /* ExtDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D501209C1DC00091F786 /* ExtDouble.swift */; };
+		1544D504209C1E190091F786 /* ExtInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D503209C1E190091F786 /* ExtInt.swift */; };
+		1544D506209C21240091F786 /* ExtUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D505209C21240091F786 /* ExtUIColor.swift */; };
+		1544D508209C21BE0091F786 /* ExtUIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D507209C21BE0091F786 /* ExtUIDevice.swift */; };
 		1550B25A209A9D0F0009CD31 /* Clima.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B256209A9D0F0009CD31 /* Clima.swift */; };
 		1550B25B209A9D0F0009CD31 /* Previsao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B257209A9D0F0009CD31 /* Previsao.swift */; };
 		1550B25C209A9D0F0009CD31 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B258209A9D0F0009CD31 /* EmptyView.swift */; };
@@ -34,6 +42,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1544D4F8209C18BF0091F786 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1544D4FB209C1B5E0091F786 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
+		1544D4FD209C1D0E0091F786 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
+		1544D4FF209C1D840091F786 /* ExtNSDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNSDate.swift; sourceTree = "<group>"; };
+		1544D501209C1DC00091F786 /* ExtDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDouble.swift; sourceTree = "<group>"; };
+		1544D503209C1E190091F786 /* ExtInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtInt.swift; sourceTree = "<group>"; };
+		1544D505209C21240091F786 /* ExtUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIColor.swift; sourceTree = "<group>"; };
+		1544D507209C21BE0091F786 /* ExtUIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIDevice.swift; sourceTree = "<group>"; };
 		1550B256209A9D0F0009CD31 /* Clima.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clima.swift; sourceTree = "<group>"; };
 		1550B257209A9D0F0009CD31 /* Previsao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previsao.swift; sourceTree = "<group>"; };
 		1550B258209A9D0F0009CD31 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -76,6 +92,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1544D4FA209C18CD0091F786 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1544D4FB209C1B5E0091F786 /* ExtString.swift */,
+				1544D4FD209C1D0E0091F786 /* ExtDate.swift */,
+				1544D4FF209C1D840091F786 /* ExtNSDate.swift */,
+				1544D501209C1DC00091F786 /* ExtDouble.swift */,
+				1544D503209C1E190091F786 /* ExtInt.swift */,
+				1544D505209C21240091F786 /* ExtUIColor.swift */,
+				1544D507209C21BE0091F786 /* ExtUIDevice.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1550B24D209A9C770009CD31 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +210,7 @@
 				ECAEAD04201E42700031F4D4 /* FirebaseUtil.swift */,
 				ECCA34552024EACE00070347 /* Enums.swift */,
 				15FF95DE209527D0003E2362 /* GlobalAlert.swift */,
+				1544D4F8209C18BF0091F786 /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -213,6 +244,7 @@
 				EC75A9B6201DF84100F26204 /* AppDelegate.swift */,
 				EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */,
 				EC75A9C5201DF84100F26204 /* Info.plist */,
+				1544D4FA209C18CD0091F786 /* Extensions */,
 				EC1B4E89201E1C840003C410 /* Utils */,
 				ECCA344E2024E2AC00070347 /* Storyboards */,
 				EC75A9C0201DF84100F26204 /* Assets.xcassets */,
@@ -332,6 +364,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -344,6 +377,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -383,7 +417,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1544D4FC209C1B5E0091F786 /* ExtString.swift in Sources */,
+				1544D500209C1D840091F786 /* ExtNSDate.swift in Sources */,
 				1550B267209A9D710009CD31 /* TempoCodable.swift in Sources */,
+				1544D508209C21BE0091F786 /* ExtUIDevice.swift in Sources */,
 				1550B26B209A9DAF0009CD31 /* Grafico.swift in Sources */,
 				EC75A9BF201DF84100F26204 /* ClimaX.xcdatamodeld in Sources */,
 				1550B25D209A9D0F0009CD31 /* DetalheClimaViewController.swift in Sources */,
@@ -394,12 +431,17 @@
 				1550B269209A9DA50009CD31 /* SignUp.swift in Sources */,
 				15FF95DF209527D0003E2362 /* GlobalAlert.swift in Sources */,
 				1550B266209A9D710009CD31 /* Tempo.swift in Sources */,
+				1544D4F9209C18BF0091F786 /* Utils.swift in Sources */,
 				ECAEAD06201E42700031F4D4 /* FirebaseUtil.swift in Sources */,
 				ECCA34562024EACE00070347 /* Enums.swift in Sources */,
 				1550B25A209A9D0F0009CD31 /* Clima.swift in Sources */,
+				1544D506209C21240091F786 /* ExtUIColor.swift in Sources */,
+				1544D504209C1E190091F786 /* ExtInt.swift in Sources */,
 				EC75A9B7201DF84100F26204 /* AppDelegate.swift in Sources */,
 				1550B26F209A9DC00009CD31 /* Mapa.swift in Sources */,
 				1550B26D209A9DB80009CD31 /* Login.swift in Sources */,
+				1544D502209C1DC00091F786 /* ExtDouble.swift in Sources */,
+				1544D4FE209C1D0E0091F786 /* ExtDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

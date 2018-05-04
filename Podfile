@@ -21,5 +21,6 @@ target 'ClimaX' do
   pod 'SVProgressHUD', :inhibit_warnings => true
   pod 'RxSwift', :inhibit_warnings => true
   pod 'Alamofire', :inhibit_warnings => true
+  pod 'CryptoSwift'
 
 end

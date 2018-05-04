@@ -135,6 +135,7 @@ class Clima: UIViewController {
             let welcome = try? JSONDecoder().decode(Welcome.self, from: response.data!)
             if let climas = welcome?.data {
                 self.cidade = welcome?.name ?? ""
+                self.navigationItem.title = self.cidade ?? "Clima"
                 self.idCidade = "\(welcome?.id ?? 0)"
                 self.previsaoTempo = climas
                 self.dismissProgress()
