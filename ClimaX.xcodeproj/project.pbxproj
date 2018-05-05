@@ -67,7 +67,7 @@
 		8D84EEC600CF0DB03D973446 /* Pods-ClimaX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX.release.xcconfig"; sourceTree = "<group>"; };
 		C296D2632397210B3757C889 /* Pods-ClimaX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClimaX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX.debug.xcconfig"; sourceTree = "<group>"; };
 		DFD37EBABA67A91B3E5C2E47 /* Pods_ClimaX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClimaX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "ClimaX/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EC75A9B3201DF84100F26204 /* ClimaX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClimaX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC75A9B6201DF84100F26204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC75A9BB201DF84100F26204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -236,14 +236,14 @@
 		EC75A9B5201DF84100F26204 /* ClimaX */ = {
 			isa = PBXGroup;
 			children = (
+				EC75A9B6201DF84100F26204 /* AppDelegate.swift */,
+				EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */,
+				EC75A9C5201DF84100F26204 /* Info.plist */,
 				1550B255209A9C950009CD31 /* Mapa */,
 				1550B254209A9C8F0009CD31 /* Login */,
 				1550B253209A9C870009CD31 /* Grafico */,
 				1550B252209A9C7E0009CD31 /* Cadastro */,
 				1550B24D209A9C770009CD31 /* Clima */,
-				EC75A9B6201DF84100F26204 /* AppDelegate.swift */,
-				EC1B4E85201E1A810003C410 /* GoogleService-Info.plist */,
-				EC75A9C5201DF84100F26204 /* Info.plist */,
 				1544D4FA209C18CD0091F786 /* Extensions */,
 				EC1B4E89201E1C840003C410 /* Utils */,
 				ECCA344E2024E2AC00070347 /* Storyboards */,
