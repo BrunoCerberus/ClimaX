@@ -10,6 +10,7 @@
 		1533412A209E0FEF00903B8A /* Previsao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15334129209E0FED00903B8A /* Previsao.swift */; };
 		1533412D209E102000903B8A /* Previsao.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1533412B209E102000903B8A /* Previsao.xib */; };
 		1533412E209E102000903B8A /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1533412C209E102000903B8A /* EmptyView.xib */; };
+		15334130209E108200903B8A /* ClimaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1533412F209E108200903B8A /* ClimaViewModel.swift */; };
 		1544D4F9209C18BF0091F786 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4F8209C18BF0091F786 /* Utils.swift */; };
 		1544D4FC209C1B5E0091F786 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FB209C1B5E0091F786 /* ExtString.swift */; };
 		1544D4FE209C1D0E0091F786 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FD209C1D0E0091F786 /* ExtDate.swift */; };
@@ -45,6 +46,7 @@
 		15334129209E0FED00903B8A /* Previsao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previsao.swift; sourceTree = "<group>"; };
 		1533412B209E102000903B8A /* Previsao.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Previsao.xib; sourceTree = "<group>"; };
 		1533412C209E102000903B8A /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		1533412F209E108200903B8A /* ClimaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimaViewModel.swift; sourceTree = "<group>"; };
 		1544D4F8209C18BF0091F786 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1544D4FB209C1B5E0091F786 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		1544D4FD209C1D0E0091F786 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				1550B25E209A9D260009CD31 /* SearchResultsController.swift */,
+				1533412F209E108200903B8A /* ClimaViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				1550B26D209A9DB80009CD31 /* Login.swift in Sources */,
 				1544D502209C1DC00091F786 /* ExtDouble.swift in Sources */,
 				1544D4FE209C1D0E0091F786 /* ExtDate.swift in Sources */,
+				15334130209E108200903B8A /* ClimaViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
