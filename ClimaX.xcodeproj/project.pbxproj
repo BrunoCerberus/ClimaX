@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1533412A209E0FEF00903B8A /* Previsao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15334129209E0FED00903B8A /* Previsao.swift */; };
+		1533412D209E102000903B8A /* Previsao.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1533412B209E102000903B8A /* Previsao.xib */; };
+		1533412E209E102000903B8A /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1533412C209E102000903B8A /* EmptyView.xib */; };
 		1544D4F9209C18BF0091F786 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4F8209C18BF0091F786 /* Utils.swift */; };
 		1544D4FC209C1B5E0091F786 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FB209C1B5E0091F786 /* ExtString.swift */; };
 		1544D4FE209C1D0E0091F786 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D4FD209C1D0E0091F786 /* ExtDate.swift */; };
@@ -16,12 +19,9 @@
 		1544D506209C21240091F786 /* ExtUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D505209C21240091F786 /* ExtUIColor.swift */; };
 		1544D508209C21BE0091F786 /* ExtUIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544D507209C21BE0091F786 /* ExtUIDevice.swift */; };
 		1550B25A209A9D0F0009CD31 /* Clima.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B256209A9D0F0009CD31 /* Clima.swift */; };
-		1550B25B209A9D0F0009CD31 /* Previsao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B257209A9D0F0009CD31 /* Previsao.swift */; };
 		1550B25C209A9D0F0009CD31 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B258209A9D0F0009CD31 /* EmptyView.swift */; };
 		1550B25D209A9D0F0009CD31 /* DetalheClimaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B259209A9D0F0009CD31 /* DetalheClimaViewController.swift */; };
 		1550B25F209A9D260009CD31 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B25E209A9D260009CD31 /* SearchResultsController.swift */; };
-		1550B262209A9D530009CD31 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1550B260209A9D530009CD31 /* EmptyView.xib */; };
-		1550B263209A9D530009CD31 /* Previsao.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1550B261209A9D530009CD31 /* Previsao.xib */; };
 		1550B266209A9D710009CD31 /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B264209A9D710009CD31 /* Tempo.swift */; };
 		1550B267209A9D710009CD31 /* TempoCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B265209A9D710009CD31 /* TempoCodable.swift */; };
 		1550B269209A9DA50009CD31 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550B268209A9DA50009CD31 /* SignUp.swift */; };
@@ -42,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15334129209E0FED00903B8A /* Previsao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previsao.swift; sourceTree = "<group>"; };
+		1533412B209E102000903B8A /* Previsao.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Previsao.xib; sourceTree = "<group>"; };
+		1533412C209E102000903B8A /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		1544D4F8209C18BF0091F786 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1544D4FB209C1B5E0091F786 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		1544D4FD209C1D0E0091F786 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
@@ -51,12 +54,9 @@
 		1544D505209C21240091F786 /* ExtUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIColor.swift; sourceTree = "<group>"; };
 		1544D507209C21BE0091F786 /* ExtUIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIDevice.swift; sourceTree = "<group>"; };
 		1550B256209A9D0F0009CD31 /* Clima.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clima.swift; sourceTree = "<group>"; };
-		1550B257209A9D0F0009CD31 /* Previsao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previsao.swift; sourceTree = "<group>"; };
 		1550B258209A9D0F0009CD31 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		1550B259209A9D0F0009CD31 /* DetalheClimaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheClimaViewController.swift; sourceTree = "<group>"; };
 		1550B25E209A9D260009CD31 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
-		1550B260209A9D530009CD31 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
-		1550B261209A9D530009CD31 /* Previsao.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Previsao.xib; sourceTree = "<group>"; };
 		1550B264209A9D710009CD31 /* Tempo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tempo.swift; sourceTree = "<group>"; };
 		1550B265209A9D710009CD31 /* TempoCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoCodable.swift; sourceTree = "<group>"; };
 		1550B268209A9DA50009CD31 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -109,6 +109,8 @@
 		1550B24D209A9C770009CD31 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
+				1533412C209E102000903B8A /* EmptyView.xib */,
+				1533412B209E102000903B8A /* Previsao.xib */,
 				1550B24E209A9C770009CD31 /* ViewModel */,
 				1550B24F209A9C770009CD31 /* Controller */,
 				1550B250209A9C770009CD31 /* Model */,
@@ -131,7 +133,6 @@
 				1550B256209A9D0F0009CD31 /* Clima.swift */,
 				1550B259209A9D0F0009CD31 /* DetalheClimaViewController.swift */,
 				1550B258209A9D0F0009CD31 /* EmptyView.swift */,
-				1550B257209A9D0F0009CD31 /* Previsao.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,8 +149,7 @@
 		1550B251209A9C770009CD31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1550B260209A9D530009CD31 /* EmptyView.xib */,
-				1550B261209A9D530009CD31 /* Previsao.xib */,
+				15334129209E0FED00903B8A /* Previsao.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,11 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC75A9C4201DF84100F26204 /* LaunchScreen.storyboard in Resources */,
+				1533412D209E102000903B8A /* Previsao.xib in Resources */,
 				EC1B4E86201E1A810003C410 /* GoogleService-Info.plist in Resources */,
-				1550B263209A9D530009CD31 /* Previsao.xib in Resources */,
 				EC75A9C1201DF84100F26204 /* Assets.xcassets in Resources */,
+				1533412E209E102000903B8A /* EmptyView.xib in Resources */,
 				EC75A9BC201DF84100F26204 /* Main.storyboard in Resources */,
-				1550B262209A9D530009CD31 /* EmptyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,12 +420,12 @@
 				1544D4FC209C1B5E0091F786 /* ExtString.swift in Sources */,
 				1544D500209C1D840091F786 /* ExtNSDate.swift in Sources */,
 				1550B267209A9D710009CD31 /* TempoCodable.swift in Sources */,
+				1533412A209E0FEF00903B8A /* Previsao.swift in Sources */,
 				1544D508209C21BE0091F786 /* ExtUIDevice.swift in Sources */,
 				1550B26B209A9DAF0009CD31 /* Grafico.swift in Sources */,
 				EC75A9BF201DF84100F26204 /* ClimaX.xcdatamodeld in Sources */,
 				1550B25D209A9D0F0009CD31 /* DetalheClimaViewController.swift in Sources */,
 				1550B25F209A9D260009CD31 /* SearchResultsController.swift in Sources */,
-				1550B25B209A9D0F0009CD31 /* Previsao.swift in Sources */,
 				1550B25C209A9D0F0009CD31 /* EmptyView.swift in Sources */,
 				ECAEAD05201E42700031F4D4 /* Base64.swift in Sources */,
 				1550B269209A9DA50009CD31 /* SignUp.swift in Sources */,
