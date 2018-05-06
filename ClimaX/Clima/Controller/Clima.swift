@@ -77,58 +77,6 @@ class Clima: UIViewController {
       
     }
     
-    
-    /// Pesquisa o ID baseado no nome da cidade
-    ///
-    /// - Parameters:
-    ///   - cidade: Nome da cidade
-    ///   - estado: UF do estado
-    func pesquisaIDCidade(_ cidade: String, _ estado: String) {
-        
-        //Request with response handling
-        request("http://apiadvisor.climatempo.com.br/api/v1/locale/city", method: .get, parameters: ["name":cidade, "state":estado, "token":myToken]).responseJSON { (response) in
-            
-            let json = JSON(response.result.value!)
-            if !json.isEmpty {
-                for object in json.arrayValue {
-                    let cityID = object["id"].intValue
-                    print("City ID: \(cityID)")
-                    DispatchQueue.main.async(execute: {
-                        self.pesquisaClimaJSON(cityID)
-                    })
-                }
-            } else {//consulta veio vazia []
-                self.dismissProgress()
-                let alert = GlobalAlert(with: self, msg: "Não foi possível obter a previsão deste local", confirmButton: true, confirmAndCancelButton: false, isModal: true)
-                alert.showAlert()
-            }
-            
-        }
-        
-    }
-    
-    func pesquisaClimaJSON(_ cityID: Int) {
-        
-        request("http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/\(cityID)/days/15", method: .get, parameters: ["token":myToken]).responseJSON { (response) in
-            
-            let welcome = try? JSONDecoder().decode(Welcome.self, from: response.data!)
-            if let climas = welcome?.data {
-                self.cidade = welcome?.name ?? ""
-                self.navigationItem.title = self.cidade ?? "Clima"
-                self.idCidade = "\(welcome?.id ?? 0)"
-                self.previsaoTempo = climas
-                self.dismissProgress()
-                self.tableView.reloadData()
-            } else {
-                self.dismissProgress()
-                self.tableView.addSubview(self.listaVazia)
-                self.tableView.isScrollEnabled = false
-                let alert = GlobalAlert(with: self, msg: "Algo deu errado, tente novamente mais tarde")
-                alert.showAlert()
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let controller = segue.destination as? DetalheClimaViewController {
@@ -173,29 +121,61 @@ class Clima: UIViewController {
         }
     }
     
+    func getPrevisaoDoTempo(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
+        
+        self.viewModel.carregaDadosLocal(whith: latitude, and: longitude, onComplete: { (city, state) in
+            
+            self.viewModel.getIdCidade(cidade: city, estado: state, onComplete: { (cityId) in
+                
+                self.viewModel.getClima(cidadeId: cityId, onComplete: { (cityName) in
+                    self.dismissProgress()
+                    self.cidade = cityName
+                    self.idCidade = "\(cityId)"
+                    self.navigationItem.title = cityName
+                    self.tableView.reloadData()
+                    
+                }, onError: { (errorMsg) in
+                    self.dismissProgress()
+                    let alert = GlobalAlert(with: self, msg: errorMsg)
+                    alert.showAlert()
+                })
+            }, onError: { (errorMsg) in
+                self.dismissProgress()
+                let alert = GlobalAlert(with: self, msg: errorMsg)
+                alert.showAlert()
+            })
+            
+        }) { (errorMsg) in
+            self.dismissProgress()
+            let alert = GlobalAlert(with: self, msg: errorMsg)
+            alert.showAlert()
+        }
+
+    }
+    
 }
 
 // MARK: - <#UITableViewDelegate, UITableViewDataSource#>
 extension Clima: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.viewModel.numberOfSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return previsaoTempo.count
+        return self.viewModel.numberOfRows(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let previsao = previsaoTempo[indexPath.row]
+        let previsao = self.viewModel.getPrevisao(in: indexPath)
         cell.commonInit(previsaoTempo: previsao)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        self.previsaoSelecionada = previsaoTempo[indexPath.row]
+        self.previsaoSelecionada = self.viewModel.getPrevisao(in: indexPath)
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }
@@ -219,15 +199,7 @@ extension Clima: CLLocationManagerDelegate {
                     showProgress()
                     firstUpdate = false
                     self.gerenciadorDeLocalizacao.stopUpdatingLocation()
-                    self.viewModel.carregaDadosLocal(whith: _latitude, and: _longitude, onComplete: { (city, state) in
-                        self.dismissProgress()
-                        self.pesquisaIDCidade(city, state)
-                        
-                    }) { (errorMsg) in
-                        self.dismissProgress()
-                        let alert = GlobalAlert(with: self, msg: errorMsg)
-                        alert.showAlert()
-                    }
+                    self.getPrevisaoDoTempo(lat: _latitude, lon: _longitude)
                 }
             }
         }
@@ -240,18 +212,8 @@ extension Clima: LocateOnTheMap {
     
     func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
         showProgress()
-        self.viewModel.carregaDadosLocal(whith: lat, and: lon, onComplete: { (city, state) in
-            self.dismissProgress()
-            self.pesquisaIDCidade(city, state)
-            
-        }) { (errorMsg) in
-            self.dismissProgress()
-            let alert = GlobalAlert(with: self, msg: errorMsg)
-            alert.showAlert()
-        }
+        self.getPrevisaoDoTempo(lat: lat, lon: lon)
     }
-    
-    
 }
 
 
@@ -264,7 +226,6 @@ extension Clima: GMSAutocompleteFetcherDelegate {
     }
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
-        //self.resultsArray.count + 1
         
         for prediction in predictions {
             
