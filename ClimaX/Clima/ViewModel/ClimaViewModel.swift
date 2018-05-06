@@ -9,11 +9,13 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import MapKit
 
 protocol ClimaViewModelProtocol {
     func numberOfSections() -> Int
     func numberOfRows(in section:Int) -> Int
     func getPrevisao(in indexPath: IndexPath) -> Datum
+    func carregaDadosLocal(whith latitude: CLLocationDegrees, and longitude: CLLocationDegrees, onComplete: @escaping (String, String) -> Void, onError: @escaping (_ mensagem: String) -> Void ) -> Void
     func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
     func getClima(cidadeId: Int, onComplete: @escaping (String) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
     func getViewVazia(to viewController: UIViewController, with width:CGFloat, and height: CGFloat ) -> UIView
@@ -39,6 +41,34 @@ class ClimaViewModel: ClimaViewModelProtocol {
     
     func setCustomCell(with nibName: String, and bundle: Bundle?) -> UINib {
         return UINib(nibName: nibName, bundle: bundle)
+    }
+    
+    func carregaDadosLocal(whith latitude: CLLocationDegrees, and longitude: CLLocationDegrees, onComplete: @escaping (String, String) -> Void, onError: @escaping (String) -> Void) {
+
+        let localAtual = CLLocation(latitude: latitude, longitude: longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
+            
+            if erro == nil {
+                //Sucesso ao carregar as coordenadas do local
+                
+                if let dadosLocal = local?.first {
+                    
+                    //loads the city name
+                    if let city = dadosLocal.locality {
+                        if let state = dadosLocal.administrativeArea {
+                            onComplete(city, state)
+                        }
+                    }
+                    
+                } else {//nao foi possivel de obter o local
+                    onError((erro?.localizedDescription)!)
+                }
+                
+            } else {//algo deu errado
+                onError((erro?.localizedDescription)!)
+            }
+        }
     }
     
     func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (String) -> Void) {

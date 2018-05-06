@@ -219,37 +219,16 @@ extension Clima: CLLocationManagerDelegate {
                     showProgress()
                     firstUpdate = false
                     self.gerenciadorDeLocalizacao.stopUpdatingLocation()
-                    self.carregaDadosLocal(latitude: _latitude, longitude: _longitude)
-                }
-            }
-        }
-    }
-    
-    //Loads the data based on current latitude and longitude location
-    func carregaDadosLocal(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        showProgress()
-        let localAtual = CLLocation(latitude: latitude, longitude: longitude)
-        
-        CLGeocoder().reverseGeocodeLocation(localAtual) { (local, erro) in
-            
-            if erro == nil {
-                //Sucesso ao carregar as coordenadas do local
-                
-                if let dadosLocal = local?.first {
-                    
-                    //loads the city name
-                    if let city = dadosLocal.locality {
-                        if let state = dadosLocal.administrativeArea {
-                            self.pesquisaIDCidade(city, state)
-                        }
+                    self.viewModel.carregaDadosLocal(whith: _latitude, and: _longitude, onComplete: { (city, state) in
+                        self.dismissProgress()
+                        self.pesquisaIDCidade(city, state)
+                        
+                    }) { (errorMsg) in
+                        self.dismissProgress()
+                        let alert = GlobalAlert(with: self, msg: errorMsg)
+                        alert.showAlert()
                     }
-                    
-                } else {//nao foi possivel de obter o local
-                    self.dismissProgress()
                 }
-                
-            } else {//algo deu errado
-                self.dismissProgress()
             }
         }
     }
@@ -260,7 +239,16 @@ extension Clima: CLLocationManagerDelegate {
 extension Clima: LocateOnTheMap {
     
     func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
-        self.carregaDadosLocal(latitude: lat, longitude: lon)
+        showProgress()
+        self.viewModel.carregaDadosLocal(whith: lat, and: lon, onComplete: { (city, state) in
+            self.dismissProgress()
+            self.pesquisaIDCidade(city, state)
+            
+        }) { (errorMsg) in
+            self.dismissProgress()
+            let alert = GlobalAlert(with: self, msg: errorMsg)
+            alert.showAlert()
+        }
     }
     
     
