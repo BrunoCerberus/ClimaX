@@ -31,53 +31,32 @@ class Clima: UIViewController {
     var searchController: UISearchController!
     var gmsFetcher: GMSAutocompleteFetcher!
     var resultArray: [String] = []
-    var searchBar: UISearchBar!
     var listaVazia: UIView!
+    var viewModel: ClimaViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.viewModel = ClimaViewModel()
+        
         //hides the shadow line of the nav bar
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
+        self.listaVazia = self.viewModel.getViewVazia(to: self, with: self.view.frame.size.width, and: self.tableView.frame.size.height)
+        self.tableView.register(self.viewModel.setCustomCell(with: "Previsao", and: nil), forCellReuseIdentifier: "reuseCell")
 
         self.auth = Auth.auth()
         configLocationManager()
-        configCell()
         loadFetcher()
         loadSearchResultController()
-        configSearchBar()
         
-        self.listaVazia = self.viewVazia()
-    }
-    
-    func viewVazia() -> UIView {
-        let tabelaVazia = Bundle.main.loadNibNamed("EmptyView", owner: self, options: nil)![0] as! UIView
-        tabelaVazia.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.tableView.frame.size.height)
         
-        return tabelaVazia
-    }
-    
-    func configSearchBar() {
-        searchBar = UISearchBar()
-        searchBar.delegate = self
-        searchBar.placeholder = "Digite a cidade"
-    }
-    
-    func loadFetcher() {
-        gmsFetcher = GMSAutocompleteFetcher()
-        gmsFetcher.delegate = self
     }
     
     func loadSearchResultController() {
         searchResultController = SearchResultsController()
         searchResultController.delegate = self
-    }
-    
-    //Register the Xib Cell
-    func configCell() {
-        let nibName = UINib(nibName: "Previsao", bundle: nil)
-        self.tableView.register(nibName, forCellReuseIdentifier: "reuseCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,6 +146,7 @@ class Clima: UIViewController {
         
         self.searchController = UISearchController(searchResultsController: searchResultController)
         self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.placeholder = "Digite uma cidade"
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
         
@@ -289,6 +269,11 @@ extension Clima: LocateOnTheMap {
 
 // MARK: - <#GMSAutocompleteFetcherDelegate#>
 extension Clima: GMSAutocompleteFetcherDelegate {
+    
+    func loadFetcher() {
+        gmsFetcher = GMSAutocompleteFetcher()
+        gmsFetcher.delegate = self
+    }
     
     func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
         //self.resultsArray.count + 1

@@ -16,10 +16,12 @@ protocol ClimaViewModelProtocol {
     func getPrevisao(in indexPath: IndexPath) -> Datum
     func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
     func getClima(cidadeId: Int, onComplete: @escaping (String) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
+    func getViewVazia(to viewController: UIViewController, with width:CGFloat, and height: CGFloat ) -> UIView
+    func setCustomCell(with nibName: String, and bundle: Bundle?) -> UINib
 }
 
 class ClimaViewModel: ClimaViewModelProtocol {
-   
+    
     var previsaoTempo: [Datum] = []
     let myToken: String = "0925e8c6873f32e349f881fa1da4564e"
     
@@ -33,6 +35,10 @@ class ClimaViewModel: ClimaViewModelProtocol {
     
     func getPrevisao(in indexPath: IndexPath) -> Datum {
         return previsaoTempo[indexPath.row]
+    }
+    
+    func setCustomCell(with nibName: String, and bundle: Bundle?) -> UINib {
+        return UINib(nibName: nibName, bundle: bundle)
     }
     
     func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (String) -> Void) {
@@ -70,5 +76,10 @@ class ClimaViewModel: ClimaViewModelProtocol {
         }
     }
     
-    
+    func getViewVazia(to viewController: UIViewController, with width: CGFloat, and height: CGFloat) -> UIView {
+        let tabelaVazia = Bundle.main.loadNibNamed("EmptyView", owner: viewController, options: nil)![0] as! UIView
+        tabelaVazia.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        return tabelaVazia
+    }
 }
