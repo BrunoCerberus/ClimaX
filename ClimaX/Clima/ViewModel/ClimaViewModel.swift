@@ -62,11 +62,11 @@ class ClimaViewModel: ClimaViewModelProtocol {
                     }
                     
                 } else {//nao foi possivel de obter o local
-                    onError((erro?.localizedDescription)!)
+                    onError(erro?.localizedDescription ?? "Algo deu errado")
                 }
                 
             } else {//algo deu errado
-                onError((erro?.localizedDescription)!)
+                onError(erro?.localizedDescription ?? "Algo deu errado")
             }
         }
     }
@@ -83,7 +83,7 @@ class ClimaViewModel: ClimaViewModelProtocol {
                     onComplete(cityID)
                 }
             } else {//consulta veio vazia []
-                onError((response.error?.localizedDescription)!)
+                onError(response.error?.localizedDescription ?? "Algo deu errado")
             }
             
         }
@@ -101,7 +101,7 @@ class ClimaViewModel: ClimaViewModelProtocol {
                 onComplete(cidade)
                
             } else {
-                onError((response.error?.localizedDescription)!)
+                onError(response.error?.localizedDescription ?? "Algo deu errado")
             }
         }
     }
