@@ -29,11 +29,11 @@ class Utils {
         let fonte = label.font.fontName
         let tamanho = label.font.pointSize
         
-        let atributos: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): UIFont(name: fonte, size: tamanho)!,
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.gray,
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.strikethroughColor.rawValue): UIColor.gray,
-            NSAttributedStringKey(rawValue: NSAttributedStringKey.strikethroughStyle.rawValue): 1 as AnyObject
+        let atributos: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): UIFont(name: fonte, size: tamanho)!,
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.gray,
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.strikethroughColor.rawValue): UIColor.gray,
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.strikethroughStyle.rawValue): 1 as AnyObject
         ]
         
         label.attributedText = NSAttributedString(string: label.text!, attributes: atributos)
@@ -109,8 +109,8 @@ public class Util:NSObject {
     
     class func exibeMensagem(mensagem: String?, titulo: String, delegate: AnyObject?, viewController: UIViewController) {
         
-        let alertController = UIAlertController(title: titulo, message: mensagem, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+        let alertController = UIAlertController(title: titulo, message: mensagem, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
             (result : UIAlertAction) -> Void in
         }
         
@@ -873,7 +873,7 @@ public class Util:NSObject {
         UIGraphicsEndImageContext()
         
         //Reduzindo a qualidade da imagem
-        let dataJpeg = UIImageJPEGRepresentation(novaImagem, 0.8)
+        let dataJpeg = novaImagem.jpegData(compressionQuality: 0.8)
         let imagemJpeg = UIImage(data: dataJpeg!)!
         return imagemJpeg
         
@@ -904,7 +904,7 @@ public class Util:NSObject {
         UIGraphicsEndImageContext()
         
         //Reduzindo a qualidade da imagem
-        return UIImageJPEGRepresentation(novaImagem, 0.98) as NSData?
+        return novaImagem.jpegData(compressionQuality: 0.98) as NSData?
         
     }
     
@@ -927,7 +927,7 @@ public class Util:NSObject {
     }
     
     class func base64ImageString(image:UIImage)->String? {
-        let tempImg = UIImagePNGRepresentation(image)
+        let tempImg = image.pngData()
         return tempImg!.base64EncodedData(options: NSData.Base64EncodingOptions(rawValue: 0)).base64EncodedString()
     }
     
@@ -953,16 +953,16 @@ public class Util:NSObject {
         let range = NSMakeRange(0, textoString.length)
         
         let textoFormatado = NSMutableAttributedString(string: String(textoString))
-        textoFormatado.addAttribute(NSAttributedStringKey.font, value: UIFont(name: nomeFonte, size: tamanhoFonte)!, range: range)
-        textoFormatado.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(hexString: strColor), range: range)
+        textoFormatado.addAttribute(NSAttributedString.Key.font, value: UIFont(name: nomeFonte, size: tamanhoFonte)!, range: range)
+        textoFormatado.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: strColor), range: range)
         
         if let destaque = destaque {
             
             let corDestaque = UIColor(hexString: strColor)
             let rangeDestaque = textoString.range(of: destaque)
             
-            textoFormatado.addAttribute(NSAttributedStringKey.foregroundColor, value: corDestaque, range: rangeDestaque)
-            textoFormatado.addAttribute(NSAttributedStringKey.font, value: UIFont(name: "Corbert-Bold", size: tamanhoFonte)!, range: rangeDestaque)
+            textoFormatado.addAttribute(NSAttributedString.Key.foregroundColor, value: corDestaque, range: rangeDestaque)
+            textoFormatado.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Corbert-Bold", size: tamanhoFonte)!, range: rangeDestaque)
             
             
         }
@@ -977,8 +977,8 @@ public class Util:NSObject {
         let range = NSMakeRange(0, textoString.length)
         
         let textoFormatado = NSMutableAttributedString(string: String(textoString))
-        textoFormatado.addAttribute(NSAttributedStringKey.font, value: UIFont(name: nomeFonte, size: tamanhoFonte)!, range: range)
-        textoFormatado.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(hexString: "333333"), range: range)
+        textoFormatado.addAttribute(NSAttributedString.Key.font, value: UIFont(name: nomeFonte, size: tamanhoFonte)!, range: range)
+        textoFormatado.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "333333"), range: range)
         
         if let _destaques = destaques {
             
@@ -987,8 +987,8 @@ public class Util:NSObject {
                 let corDestaque = UIColor(hexString: "333333")
                 let rangeDestaque = textoString.range(of: destaque)
                 
-                textoFormatado.addAttribute(NSAttributedStringKey.foregroundColor, value: corDestaque, range: rangeDestaque)
-                textoFormatado.addAttribute(NSAttributedStringKey.font, value: UIFont(name: "Corbert-Bold", size: tamanhoFonte)!, range: rangeDestaque)
+                textoFormatado.addAttribute(NSAttributedString.Key.foregroundColor, value: corDestaque, range: rangeDestaque)
+                textoFormatado.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Corbert-Bold", size: tamanhoFonte)!, range: rangeDestaque)
                 
             }
             

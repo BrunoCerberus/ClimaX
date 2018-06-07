@@ -28,14 +28,14 @@ struct GlobalAlert {
     }
     
     func showAlert() {
-        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertController.Style.alert)
         let confirmAction = UIAlertAction(title: "ok", style: .default, handler: nil)
         alerta.addAction(confirmAction)
         self.controller.present(alerta, animated: true, completion: nil)
     }
     
     func showAlertAndReturn() {
-        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertController.Style.alert)
         if isModal {
             
             if self.confirmButton && !self.confirmAndCancelButton {
@@ -71,7 +71,7 @@ struct GlobalAlert {
     }
     
     func logout() {
-        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alerta = UIAlertController(title: "Atenção", message: self.msg, preferredStyle: UIAlertController.Style.alert)
         if isModal {
             
             if self.confirmButton && !self.confirmAndCancelButton {

@@ -255,37 +255,37 @@ extension String {
                 return false
             }
             
-            var digitTen = (Int(String(cpf[9])) ?? 0)
-            var digitEleven = (Int(String(cpf[10])) ?? 0)
+//            var digitTen = (Int(String(cpf[9])) ?? 0)
+//            var digitEleven = (Int(String(cpf[10])) ?? 0)
+//
+//            var resultModuleOne: Int = 0, resultModuleTwo: Int = 0, realValue: Int = 0
+//            var i: Int = 0, j: Int = 11
+//            for index in 0..<cpf.count-1 {
+//                realValue = (Int(String(cpf[index])) ?? 0)
+//                resultModuleTwo += (realValue * j)
+//
+//                if (i > 0) {
+//                    realValue = (Int(String(cpf[index-1])) ?? 0)
+//                    resultModuleOne += (realValue * j)
+//                }
+//
+//                i += 1; j -= 1;
+//            }
             
-            var resultModuleOne: Int = 0, resultModuleTwo: Int = 0, realValue: Int = 0
-            var i: Int = 0, j: Int = 11
-            for index in 0..<cpf.count-1 {
-                realValue = (Int(String(cpf[index])) ?? 0)
-                resultModuleTwo += (realValue * j)
-                
-                if (i > 0) {
-                    realValue = (Int(String(cpf[index-1])) ?? 0)
-                    resultModuleOne += (realValue * j)
-                }
-                
-                i += 1; j -= 1;
-            }
-            
-            resultModuleOne %= 11
-            resultModuleOne = resultModuleOne < 2 ? 0 : resultModuleOne-11
-            
-            resultModuleTwo %= 11
-            resultModuleTwo = resultModuleTwo < 2 ? 0 : resultModuleTwo-11
-            
-            resultModuleOne = resultModuleOne < 0 ? resultModuleOne * -1 : resultModuleOne
-            digitTen        = digitTen < 0 ? digitTen * -1 : digitTen
-            resultModuleTwo = resultModuleTwo < 0 ? resultModuleTwo * -1 : resultModuleTwo
-            digitEleven     = digitEleven < 0 ? digitEleven * -1 : digitEleven
-            
-            if (resultModuleOne == digitTen && resultModuleTwo == digitEleven) {
-                return true
-            }
+//            resultModuleOne %= 11
+//            resultModuleOne = resultModuleOne < 2 ? 0 : resultModuleOne-11
+//            
+//            resultModuleTwo %= 11
+//            resultModuleTwo = resultModuleTwo < 2 ? 0 : resultModuleTwo-11
+//            
+//            resultModuleOne = resultModuleOne < 0 ? resultModuleOne * -1 : resultModuleOne
+//            digitTen        = digitTen < 0 ? digitTen * -1 : digitTen
+//            resultModuleTwo = resultModuleTwo < 0 ? resultModuleTwo * -1 : resultModuleTwo
+//            digitEleven     = digitEleven < 0 ? digitEleven * -1 : digitEleven
+//            
+//            if (resultModuleOne == digitTen && resultModuleTwo == digitEleven) {
+//                return true
+//            }
         }
         
         return false
@@ -662,25 +662,25 @@ extension String {
         return self.count
     }
     
-    subscript (i: Int) -> String {
-        return self[Range(i ..< i + 1)]
-    }
+//    subscript (i: Int) -> String {
+//        return self[Range(i ..< i + 1)]
+//    }
+//
+//    func substring(from: Int) -> String {
+//        return self[Range(min(from, length) ..< length)]
+//    }
+//
+//    func substring(to: Int) -> String {
+//        return self[Range(0 ..< max(0, to))]
+//    }
     
-    func substring(from: Int) -> String {
-        return self[Range(min(from, length) ..< length)]
-    }
-    
-    func substring(to: Int) -> String {
-        return self[Range(0 ..< max(0, to))]
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
-                                            upper: min(length, max(0, r.upperBound))))
-        let start = index(startIndex, offsetBy: range.lowerBound)
-        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return String(self[Range(start ..< end)])
-    }
+//    subscript (r: Range<Int>) -> String {
+//        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+//                                            upper: min(length, max(0, r.upperBound))))
+//        let start = index(startIndex, offsetBy: range.lowerBound)
+//        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+//        return String(self[Range(start ..< end)])
+//    }
     
     func dropLast(_ n: Int = 1) -> String {
         return String(dropLast(n))
