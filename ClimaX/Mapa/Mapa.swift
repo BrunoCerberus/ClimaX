@@ -8,17 +8,26 @@
 
 import UIKit
 import FirebaseAuth
+import MapKit
 
 class Mapa: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     var auth: Auth!
+    var searchController: UISearchController!
+    var locationManager: CLLocationManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.auth = Auth.auth()
+        
+        locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +41,9 @@ class Mapa: UIViewController {
         alerta.logout()
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
 
@@ -40,7 +51,16 @@ class Mapa: UIViewController {
 // MARK: - <#UISearchBarDelegate#>
 extension Mapa: UISearchBarDelegate {
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print(searchBar.text)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText: \(searchText)")
+    }
+}
+
+
+// MARK: - <#MKMapViewDelegate, CLLocationManagerDelegate#>
+extension Mapa: MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
     }
 }
