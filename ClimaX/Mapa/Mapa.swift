@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class Mapa: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var auth: Auth!
 
     override func viewDidLoad() {
@@ -32,4 +34,13 @@ class Mapa: UIViewController {
     
     
 
+}
+
+
+// MARK: - <#UISearchBarDelegate#>
+extension Mapa: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print(searchBar.text)
+    }
 }

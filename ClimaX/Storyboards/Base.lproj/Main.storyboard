@@ -235,6 +235,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="6zv-3C-8Vm" id="2fT-UO-ygb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVF-Zl-BwL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
