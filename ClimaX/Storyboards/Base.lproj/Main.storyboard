@@ -199,16 +199,30 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIY-HS-7Dm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="690" id="6Du-a6-yCR"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="fMy-6f-1Ra" id="7FJ-CV-SpM"/>
                                 </connections>
                             </mapView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6zv-3C-8Vm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fMy-6f-1Ra" id="Ts3-J6-UTi"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.094952858984470367" green="0.48843675851821899" blue="0.72478324174880981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eIY-HS-7Dm" firstAttribute="leading" secondItem="U0Z-t4-d1k" secondAttribute="leading" id="CHk-0P-Nue"/>
+                            <constraint firstItem="eIY-HS-7Dm" firstAttribute="top" secondItem="U0Z-t4-d1k" secondAttribute="top" id="Msc-gC-eVd"/>
                             <constraint firstItem="eIY-HS-7Dm" firstAttribute="top" secondItem="dIS-w6-3lo" secondAttribute="top" id="NMh-mc-RmO"/>
                             <constraint firstItem="eIY-HS-7Dm" firstAttribute="trailing" secondItem="U0Z-t4-d1k" secondAttribute="trailing" id="Oam-P3-UaG"/>
+                            <constraint firstItem="eIY-HS-7Dm" firstAttribute="trailing" secondItem="U0Z-t4-d1k" secondAttribute="trailing" id="QZ4-Tv-BBy"/>
+                            <constraint firstItem="eIY-HS-7Dm" firstAttribute="leading" secondItem="U0Z-t4-d1k" secondAttribute="leading" id="pMZ-mP-FGK"/>
                             <constraint firstItem="U0Z-t4-d1k" firstAttribute="bottom" secondItem="eIY-HS-7Dm" secondAttribute="bottom" id="rrF-bi-Hk4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U0Z-t4-d1k"/>
