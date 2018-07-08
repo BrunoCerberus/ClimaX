@@ -13,13 +13,6 @@ import GoogleMaps
 import GooglePlaces
 import SVProgressHUD
 
-#if swift(>=4.2)
-import UIKit.UIGeometry
-extension UIEdgeInsets {
-    public static let zero = UIEdgeInsets()
-}
-#endif
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
