@@ -229,7 +229,7 @@ extension String {
     
     var detectaData: [Date]? {
         do {
-            return try NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue).matches(in: self, options: [], range: NSMakeRange(0, (self as NSString).length)).flatMap{ $0.date }
+            return try NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue).matches(in: self, options: [], range: NSMakeRange(0, (self as NSString).length)).compactMap{ $0.date }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -682,17 +682,17 @@ extension String {
 //        return String(self[Range(start ..< end)])
 //    }
     
-    func dropLast(_ n: Int = 1) -> String {
-        return String(dropLast(n))
-    }
+//    func dropLast(_ n: Int = 1) -> String {
+//        return String(dropLast(n))
+//    }
+//
+//    func dropFirst(_ n: Int = 1) -> String {
+//        return String(dropFirst(n))
+//    }
     
-    func dropFirst(_ n: Int = 1) -> String {
-        return String(dropFirst(n))
-    }
-    
-    var dropLast: String {
-        return dropLast()
-    }
+//    var dropLast: String {
+//        return dropLast()
+//    }
     
     func removingWhitespaces() -> String {
         return components(separatedBy: .whitespaces).joined()
