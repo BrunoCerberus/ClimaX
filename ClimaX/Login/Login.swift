@@ -55,9 +55,9 @@ class Login: UIViewController {
     
     func loginNow() {
         
-        if let _email = self.email.text {
-            if let _senha = self.senha.text {
-                self.auth.signIn(withEmail: _email, password: _senha, completion: { (user, erro) in
+        if let email = self.email.text {
+            if let senha = self.senha.text {
+                self.auth.signIn(withEmail: email, password: senha, completion: { (user, erro) in
                     
                     if erro == nil {
                         // sucesso ao logar o usuario
@@ -73,10 +73,7 @@ class Login: UIViewController {
     @IBAction func logar(_ sender: Any) {
         self.loginNow()
     }
-    
-
 }
-
 
 // MARK: - <#UITextFieldDelegate#>
 extension Login: UITextFieldDelegate {
@@ -95,4 +92,3 @@ extension Login: UITextFieldDelegate {
     }
     
 }
-

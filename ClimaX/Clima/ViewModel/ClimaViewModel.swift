@@ -13,12 +13,25 @@ import MapKit
 
 protocol ClimaViewModelProtocol {
     func numberOfSections() -> Int
-    func numberOfRows(in section:Int) -> Int
+    func numberOfRows(in section: Int) -> Int
     func getPrevisao(in indexPath: IndexPath) -> Datum
-    func carregaDadosLocal(whith latitude: CLLocationDegrees, and longitude: CLLocationDegrees, onComplete: @escaping (String, String) -> Void, onError: @escaping (_ mensagem: String) -> Void ) -> Void
-    func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
-    func getClima(cidadeId: Int, onComplete: @escaping (String) -> Void, onError: @escaping (_ mensagem: String) -> Void) -> Void
-    func getViewVazia(to viewController: UIViewController, with width:CGFloat, and height: CGFloat ) -> UIView
+    func carregaDadosLocal(whith latitude: CLLocationDegrees,
+                           and longitude: CLLocationDegrees,
+                           onComplete: @escaping (String, String) -> Void,
+                           onError: @escaping (_ mensagem: String) -> Void )
+    
+    func getIdCidade(cidade: String, estado: String,
+                     onComplete: @escaping (Int) -> Void,
+                     onError: @escaping (_ mensagem: String) -> Void)
+    
+    func getClima(cidadeId: Int,
+                  onComplete: @escaping (String) -> Void,
+                  onError: @escaping (_ mensagem: String) -> Void)
+    
+    func getViewVazia(to viewController: UIViewController,
+                      with width: CGFloat,
+                      and height: CGFloat ) -> UIView
+    
     func setCustomCell(with nibName: String, and bundle: Bundle?) -> UINib
 }
 
@@ -43,7 +56,10 @@ class ClimaViewModel: ClimaViewModelProtocol {
         return UINib(nibName: nibName, bundle: bundle)
     }
     
-    func carregaDadosLocal(whith latitude: CLLocationDegrees, and longitude: CLLocationDegrees, onComplete: @escaping (String, String) -> Void, onError: @escaping (String) -> Void) {
+    func carregaDadosLocal(whith latitude: CLLocationDegrees,
+                           and longitude: CLLocationDegrees,
+                           onComplete: @escaping (String, String) -> Void,
+                           onError: @escaping (String) -> Void) {
 
         let localAtual = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -71,9 +87,15 @@ class ClimaViewModel: ClimaViewModelProtocol {
         }
     }
     
-    func getIdCidade(cidade: String, estado: String, onComplete: @escaping (Int) -> Void, onError: @escaping (String) -> Void) {
+    func getIdCidade(cidade: String, estado: String,
+                     onComplete: @escaping (Int) -> Void,
+                     onError: @escaping (String) -> Void) {
         //Request with response handling
-        request("http://apiadvisor.climatempo.com.br/api/v1/locale/city", method: .get, parameters: ["name":cidade, "state":estado, "token":myToken]).responseJSON { (response) in
+        request("http://apiadvisor.climatempo.com.br/api/v1/locale/city",
+                method: .get,
+                parameters: ["name": cidade,
+                             "state": estado,
+                             "token": myToken]).responseJSON { (response) in
             
             let json = JSON(response.result.value!)
             if !json.isEmpty {
@@ -89,10 +111,11 @@ class ClimaViewModel: ClimaViewModelProtocol {
         }
     }
     
-    
     func getClima(cidadeId: Int, onComplete: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         
-        request("http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/\(cidadeId)/days/15", method: .get, parameters: ["token":myToken]).responseJSON { (response) in
+        request("http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/\(cidadeId)/days/15",
+            method: .get,
+            parameters: ["token": myToken]).responseJSON { (response) in
             
             let welcome = try? JSONDecoder().decode(Welcome.self, from: response.data!)
             if let climas = welcome?.data {
@@ -107,9 +130,10 @@ class ClimaViewModel: ClimaViewModelProtocol {
     }
     
     func getViewVazia(to viewController: UIViewController, with width: CGFloat, and height: CGFloat) -> UIView {
-        let tabelaVazia = Bundle.main.loadNibNamed("EmptyView", owner: viewController, options: nil)![0] as! UIView
-        tabelaVazia.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        return tabelaVazia
+        if let tabelaVazia = Bundle.main.loadNibNamed("EmptyView", owner: viewController, options: nil)![0] as? UIView {
+            tabelaVazia.frame = CGRect(x: 0, y: 0, width: width, height: height)
+            return tabelaVazia
+        }
+        return UIView()
     }
 }

@@ -78,22 +78,22 @@ class SignUp: UIViewController {
             
             if self.confirmaSenhas() {
                 
-                if let _nome = nome.text {
-                    if let _email = email.text {
-                        if let _senha = senha.text {
+                if let nome = nome.text {
+                    if let email = email.text {
+                        if let senha = senha.text {
                             
-                            self.auth.createUser(withEmail: _email, password: _senha, completion: { (user, erro) in
+                            self.auth.createUser(withEmail: email, password: senha, completion: { (user, erro) in
                                 
                                 if erro == nil {
                                     
                                     // converter email para base 64
-                                    let chave = Base64().codificarStringBase64(texto: _email)
+                                    let chave = Base64().codificarStringBase64(texto: email)
                                     
                                     let usuarios = self.database.child("usuarios")
                                     
-                                    let dadosUsuario: Dictionary<String, String> = [
-                                        "nome": _nome,
-                                        "email": _email
+                                    let dadosUsuario: [String: String] = [
+                                        "nome": nome,
+                                        "email": email
                                     ]
                                     usuarios.child(chave).setValue(dadosUsuario)
                                     
@@ -108,7 +108,6 @@ class SignUp: UIViewController {
             } else {
                 //Exibir alerta senhas diferentes
             }
-            
             
         } else {
             // exibir alerta
@@ -127,17 +126,13 @@ extension SignUp: UITextFieldDelegate {
             
         case nome:
             self.email.becomeFirstResponder()
-            break
         case email:
             self.senha.becomeFirstResponder()
-            break
         case senha:
             self.confirmaSenha.becomeFirstResponder()
-            break
         default:
             self.view.endEditing(true)
             self.cadastraUsuario()
-            break
         }
         
         return false

@@ -19,14 +19,14 @@ class Clima: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pesquisa: UIBarButtonItem!
     
-    var auth:Auth!
+    var auth: Auth!
     var gerenciadorDeLocalizacao = CLLocationManager()
     var firstUpdate: Bool = true
     let myToken = "0925e8c6873f32e349f881fa1da4564e"
     var previsaoTempo: [Datum] = []
     var previsaoSelecionada: Datum!
-    var cidade: String? = nil
-    var idCidade: String? = nil
+    var cidade: String?
+    var idCidade: String?
     var searchResultController: SearchResultsController!
     var searchController: UISearchController!
     var gmsFetcher: GMSAutocompleteFetcher!
@@ -43,14 +43,17 @@ class Clima: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
-        self.listaVazia = self.viewModel.getViewVazia(to: self, with: self.view.frame.size.width, and: self.tableView.frame.size.height)
-        self.tableView.register(self.viewModel.setCustomCell(with: "Previsao", and: nil), forCellReuseIdentifier: "reuseCell")
+        self.listaVazia = self.viewModel.getViewVazia(to: self,
+                                                      with: self.view.frame.size.width,
+                                                      and: self.tableView.frame.size.height)
+        self.tableView.register(self.viewModel.setCustomCell(with: "Previsao",
+                                                             and: nil),
+                                forCellReuseIdentifier: "reuseCell")
 
         self.auth = Auth.auth()
         configLocationManager()
         loadFetcher()
         loadSearchResultController()
-        
         
     }
     
@@ -72,7 +75,11 @@ class Clima: UIViewController {
     
     @IBAction func sair(_ sender: Any) {
         
-        let alerta = GlobalAlert(with: self, msg: "Deseja sair?", confirmButton: false, confirmAndCancelButton: true, isModal: true)
+        let alerta = GlobalAlert(with: self,
+                                 msg: "Deseja sair?",
+                                 confirmButton: false,
+                                 confirmAndCancelButton: true,
+                                 isModal: true)
         alerta.logout()
       
     }
@@ -81,7 +88,11 @@ class Clima: UIViewController {
         if segue.identifier == "showDetail" {
             if let controller = segue.destination as? DetalheClimaViewController {
                 
-                if (!(self.cidade?.isEmpty)! || self.cidade != nil || !(self.idCidade?.isEmpty)! || self.idCidade != "0"){
+                if !(self.cidade?.isEmpty)! ||
+                        self.cidade != nil ||
+                        !(self.idCidade?.isEmpty)! ||
+                        self.idCidade != "0" {
+                    
                     controller.cidade = self.cidade
                     controller.idCidade = self.idCidade
                     controller.previsao = self.previsaoSelecionada
@@ -98,7 +109,7 @@ class Clima: UIViewController {
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.dimsBackgroundDuringPresentation = false
         
-        self.present(self.searchController, animated:true, completion: nil)
+        self.present(self.searchController, animated: true, completion: nil)
     }
     
     func dismissKeyboard() {
@@ -167,10 +178,12 @@ extension Clima: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as! Previsao
-        let previsao = self.viewModel.getPrevisao(in: indexPath)
-        cell.commonInit(previsaoTempo: previsao)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as? Previsao {
+            let previsao = self.viewModel.getPrevisao(in: indexPath)
+            cell.commonInit(previsaoTempo: previsao)
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -179,7 +192,6 @@ extension Clima: UITableViewDelegate, UITableViewDataSource {
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }
-
 
 // MARK: - <#CLLocationManagerDelegate#>
 extension Clima: CLLocationManagerDelegate {
@@ -194,18 +206,17 @@ extension Clima: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if firstUpdate {
-            if let _latitude = locations.first?.coordinate.latitude {
-                if let _longitude = locations.first?.coordinate.longitude {
+            if let latitude = locations.first?.coordinate.latitude {
+                if let longitude = locations.first?.coordinate.longitude {
                     showProgress()
                     firstUpdate = false
                     self.gerenciadorDeLocalizacao.stopUpdatingLocation()
-                    self.getPrevisaoDoTempo(lat: _latitude, lon: _longitude)
+                    self.getPrevisaoDoTempo(lat: latitude, lon: longitude)
                 }
             }
         }
     }
 }
-
 
 // MARK: - <#LocateOnTheMap#>
 extension Clima: LocateOnTheMap {
@@ -215,7 +226,6 @@ extension Clima: LocateOnTheMap {
         self.getPrevisaoDoTempo(lat: lat, lon: lon)
     }
 }
-
 
 // MARK: - <#GMSAutocompleteFetcherDelegate#>
 extension Clima: GMSAutocompleteFetcherDelegate {
@@ -229,7 +239,7 @@ extension Clima: GMSAutocompleteFetcherDelegate {
         
         for prediction in predictions {
             
-            if let prediction = prediction as GMSAutocompletePrediction?{
+            if let prediction = prediction as GMSAutocompletePrediction? {
                 self.resultArray.append(prediction.attributedFullText.string)
             }
         }
@@ -243,7 +253,6 @@ extension Clima: GMSAutocompleteFetcherDelegate {
     }
     
 }
-
 
 // MARK: - <#UISearchBarDelegate#>
 extension Clima: UISearchBarDelegate {

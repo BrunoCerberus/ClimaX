@@ -23,9 +23,9 @@ class DetalheClimaViewController: UIViewController {
     @IBOutlet weak var codCidade: UILabel!
     @IBOutlet weak var situacao: UILabel!
     
-    var cidade: String? = nil
-    var idCidade: String? = nil
-    var previsao: Datum? = nil
+    var cidade: String?
+    var idCidade: String?
+    var previsao: Datum?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,19 +35,19 @@ class DetalheClimaViewController: UIViewController {
     
     func carregaDados() {
         
-        if let _previsao = self.previsao, let _cidade = self.cidade, let _idCidade = self.idCidade {
-            self.cidadeLabel.text = _cidade
-            self.codCidade.text = _idCidade
-            self.dataLabel.text = _previsao.dateBr
-            self.umidade.text = "\((_previsao.humidity.max + _previsao.humidity.min)/2)"
-            self.probabilidadeDeChuva.text = "\(_previsao.rain.probability)%"
-            self.velocDoVento.text = "\(_previsao.wind.velocityAvg)km/h"
-            self.intensidadeUV.text = "\(_previsao.uv.max)"
-            self.sensacaoTermica.text = "\((_previsao.thermalSensation.max + _previsao.thermalSensation.min)/2)C"
-            self.tempMax.text = "\(_previsao.temperature.max)C"
-            self.tempMin.text = "\(_previsao.temperature.min)C"
-            self.precipitacao.text = "\(_previsao.rain.precipitation)"
-            self.situacao.text = _previsao.textIcon.text.phrase.reduced ?? "----"
+        if let previsao = self.previsao, let cidade = self.cidade, let idCidade = self.idCidade {
+            self.cidadeLabel.text = cidade
+            self.codCidade.text = idCidade
+            self.dataLabel.text = previsao.dateBr
+            self.umidade.text = "\((previsao.humidity.max + previsao.humidity.min)/2)"
+            self.probabilidadeDeChuva.text = "\(previsao.rain.probability)%"
+            self.velocDoVento.text = "\(previsao.wind.velocityAvg)km/h"
+            self.intensidadeUV.text = "\(previsao.uv.max)"
+            self.sensacaoTermica.text = "\((previsao.thermalSensation.max + previsao.thermalSensation.min)/2)C"
+            self.tempMax.text = "\(previsao.temperature.max)C"
+            self.tempMin.text = "\(previsao.temperature.min)C"
+            self.precipitacao.text = "\(previsao.rain.precipitation)"
+            self.situacao.text = previsao.textIcon.text.phrase.reduced ?? "----"
         }
     }
 

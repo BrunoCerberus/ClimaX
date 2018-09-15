@@ -25,15 +25,15 @@ class Tempo {
         velocVento = json["wind"]["velocity_avg"].doubleValue
         temperatura = "\(json["temperature"]["min"].intValue)C ~ \(json["temperature"]["max"])C"
         sensTermica = "\(json["thermal_sensation"]["min"].intValue)C ~ \(json["thermal_sensation"]["max"].intValue)C"
-        let _rainProb = json["rain"]["probability"].intValue
-        if _rainProb >= 30 {
+        let rainProb = json["rain"]["probability"].intValue
+        if rainProb >= 30 {
             tempoLocal = TempoLocal.chuvoso
         } else {
-            let _text = json["text_icon"]["text"]["pt"].stringValue
-            if (_text.range(of: "Sol") != nil) || (_text.range(of: "sol") != nil) {
+            let texto = json["text_icon"]["text"]["pt"].stringValue
+            if (texto.range(of: "Sol") != nil) || (texto.range(of: "sol") != nil) {
                 //we have sun
                 tempoLocal = TempoLocal.ensolarado
-            } else if (_text.range(of: "Nublado") != nil) || (_text.range(of: "nublado") != nil) || (_text.range(of: "nuvens") != nil) || (_text.range(of: "Nuvens") != nil) {
+            } else if (texto.range(of: "Nublado") != nil) || (texto.range(of: "nublado") != nil) || (texto.range(of: "nuvens") != nil) || (texto.range(of: "Nuvens") != nil) {
                 //we have a cloudy weather
                 tempoLocal = TempoLocal.fechado
             }

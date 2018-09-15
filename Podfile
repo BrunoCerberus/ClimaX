@@ -22,5 +22,6 @@ target 'ClimaX' do
   pod 'RxSwift', :inhibit_warnings => true
   pod 'Alamofire', :inhibit_warnings => true
   pod 'CryptoSwift', :inhibit_warnings => true
+  pod 'SwiftLint', :inhibit_warnings => true
 
 end

@@ -309,6 +309,7 @@
 				EC75A9B1201DF84100F26204 /* Resources */,
 				78A786952BA27CB481FEB7A7 /* [CP] Embed Pods Frameworks */,
 				0826895040077F08268981BF /* [CP] Copy Pods Resources */,
+				15DF8DF8214C9BE8008A1ED5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -390,6 +391,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ClimaX/Pods-ClimaX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		15DF8DF8214C9BE8008A1ED5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		78A786952BA27CB481FEB7A7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
